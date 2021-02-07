@@ -1,29 +1,32 @@
 # ADMINISTRATIE
 
 
-- User story map
+- User story map met 3 iteratieve niveaus
 - Testing user stories
 - Kanban bord
-- scope document (BIJ START)
-- vision document (BIJ START)
-- 3 feedbackmomenten
-    - verslag maken per feedbackmoment
-    - aanpassen user story map na feedbackmoment
-    - aanpassne user story cards na feedbackmoment
-- logboek per dag
+- Scope document (BIJ START)
+- Vision document (BIJ START)
+- 3 Feedbackmomenten + bezorgen aan klant en projectbegeleider
+    - Verslag maken per feedbackmoment
+    - Aanpassen user story map na feedbackmoment
+    - Aanpassen user story cards na feedbackmoment
+- Logboek per dag
 
+- Wekelijkse snapshot 
+    - User story map 
+    - Domain model
 
 
 ## DOCUMENTATIE (5%)
-- installatiehandleiding
-- gebruikershandleiding
+- Installatiehandleiding
+- Gebruikershandleiding
 
 
 
 ## SCRIPTIEVERSLAG (10%)
-- hoe het systeem tot stand is gekomen
-    - werkverdeling
-    - problemen en oplossingen
-    - bronnen
-    - beschrijving van gebruikte technologie
-    - indien van toepassing een domain class diagram ( UML)
+- Hoe het systeem tot stand is gekomen
+    - Werkverdeling
+    - Problemen en oplossingen
+    - Bronnen
+    - Beschrijving van gebruikte technologie
+    - Indien van toepassing een domain class diagram ( UML)
