@@ -246,11 +246,11 @@ while True:
 				#	to.counted = True
 
 			distance = pow(pow((middelpunt[0] - centroid[0]), 2) + pow((middelpunt[1] - centroid[1]), 2), (1/2))
-			if distance <= radius:
+			if distance <= radius and not list_ontsmet.__contains__(objectID):
 				t = time.time()
 				list_time.append(t)
 				print("!!!!!!!!detection!!!!!!!! ", t)
-				if list_time[len(list_time) - 1] - list_time[0] >= 2.5 and not list_ontsmet.__contains__(objectID):
+				if list_time[len(list_time) - 1] - list_time[0] >= 2.5:
 					print("Disinfection counted")
 					list_ontsmet.append(objectID)
 					totalDetection = totalDetection + 1
