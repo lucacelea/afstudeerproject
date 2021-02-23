@@ -22,6 +22,7 @@ import dlib
 import cv2
 import dispenser
 import datetime
+import data
 
 # construct the argument parse and parse the arguments
 ap = argparse.ArgumentParser()
@@ -53,7 +54,7 @@ net = cv2.dnn.readNetFromCaffe(args["prototxt"], args["model"])
 # if a video path was not supplied, grab a reference to the webcam
 if not args.get("input", False):
 	print("[INFO] starting video stream...")
-	vs = VideoStream(src=0).start()
+	vs = cv2.VideoCapture(0)
 	time.sleep(2.0)
 
 # otherwise, grab a reference to the video file
@@ -82,11 +83,15 @@ totalFrames = 0
 totalPeople = 0
 totalDetection = 0
 t = 0
+list_time = []
+list_ontsmet = []
 
 # start the frames per second throughput estimator
 fps = FPS().start()
 _, frame = vs.read()
-frame1 = imutils.resize(frame, width=500)
+_, frame0 = vs.read()
+
+frame1 = imutils.resize(frame0, width=500)
 cv2.imwrite("room_photo.jpg", frame1)
 middelpunt, radius = dispenser.dispenser("room_photo.jpg")
 
@@ -196,7 +201,7 @@ while True:
 	# draw a horizontal line in the center of the frame -- once an
 	# object crosses this line we will determine whether they were
 	# moving 'up' or 'down'
-	cv2.line(frame, (0, H // 2), (W, H // 2), (0, 255, 255), 2)
+	cv2.line(frame, (0, int(H // 1.5)), (W, int(H // 1.5)), (0, 255, 255), 2)
 
 	# use the centroid tracker to associate the (1) old object
 	# centroids with (2) the newly computed object centroids
@@ -228,9 +233,10 @@ while True:
 				# if the direction is negative (indicating the object
 				# is moving up) AND the centroid is above the center
 				# line, count the object
-				if direction < 0 and (H // 2 + 150) >= centroid[1] >= (H//2 - 150):
+				if direction < 0 and (H // 2 + 50) >= centroid[1] >= (H//2 - 50):
 					totalPeople += 1
 					to.counted = True
+					data.log_detection({'EPOCH_TIME': time.time(), 'TOTAL': totalPeople, 'DISINFECTED': totalDetection})
 
 				# if the direction is positive (indicating the object
 				# is moving down) AND the centroid is below the
@@ -242,9 +248,15 @@ while True:
 			distance = pow(pow((middelpunt[0] - centroid[0]), 2) + pow((middelpunt[1] - centroid[1]), 2), (1/2))
 			if distance <= radius:
 				t = time.time()
-				print("&&&&&&&&&&detection&&&&&&&&&&")
-				if datetime.timedelta(seconds=(time.time() - t)) >= datetime.timedelta(seconds=5):
-					print("!!!!!!!!!!!!!!!detection!!!!!!!!!!!")
+				list_time.append(t)
+				print("!!!!!!!!detection!!!!!!!! ", t)
+				if list_time[len(list_time) - 1] - list_time[0] >= 2.5 and not list_ontsmet.__contains__(objectID):
+					print("Disinfection counted")
+					list_ontsmet.append(objectID)
+					totalDetection = totalDetection + 1
+					print("reset")
+					list_time = []
+					data.log_detection({'EPOCH_TIME': time.time(), 'TOTAL': totalPeople, 'DISINFECTED': totalDetection})
 
 
 
@@ -263,6 +275,7 @@ while True:
 	info = [
 		("People", totalPeople),
 		("Status", status),
+		("Disinfection", totalDetection)
 	]
 
 	# loop over the info tuples and draw them on our frame
