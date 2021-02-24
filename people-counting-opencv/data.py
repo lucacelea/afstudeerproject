@@ -12,10 +12,9 @@ seperate_session_logging_files = config_object.getboolean("LOGGING","seperate_se
 
 def log_detection(data):
 	if seperate_session_logging_files:
-		file_name = "detection_log{}.csv".format(data.get('SESSION_ID'))
+		file_name = "detection_log_{}.csv".format(data.get('SESSION_ID'))
 	else:
 		file_name = "detection_log.csv"
-
 	file_exists = path.exists(file_name)
 
 	with open(file_name, 'a',newline='') as detections:

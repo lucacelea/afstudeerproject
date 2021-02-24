@@ -34,7 +34,7 @@ def run():
     model = ["-m","mobilenet_ssd/MobileNetSSD_deploy.caffemodel"]
     input = ["-i",video_input_file]
     skip_frames = ["-s",skipped_frames]
-    print(webcam.get())
+    
     if webcam.get():
         subprocess.call(['python', 'people_counter.py'] + protox + model + skip_frames)
     else:
