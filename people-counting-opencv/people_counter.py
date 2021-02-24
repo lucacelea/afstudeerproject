@@ -40,6 +40,10 @@ ap.add_argument("-s", "--skip-frames", type=int, default=30,
 	help="# of skip frames between detections")
 args = vars(ap.parse_args())
 
+#create session id in epoch time
+
+session_id = int(time.time())
+
 # initialize the list of class labels MobileNet SSD was trained to
 # detect
 CLASSES = ["background", "aeroplane", "bicycle", "bird", "boat",
@@ -236,8 +240,7 @@ while True:
 				if direction < 0 and (H // 2 + 50) >= centroid[1] >= (H//2 - 50):
 					totalPeople += 1
 					to.counted = True
-					data.log_detection({'EPOCH_TIME': time.time(), 'TOTAL': totalPeople, 'DISINFECTED': totalDetection})
-
+					data.log_detection({'SESSION_ID': session_id,'EPOCH_TIME': time.time(), 'EVENT' : 'ENTERED'})
 				# if the direction is positive (indicating the object
 				# is moving down) AND the centroid is below the
 				# center line, count the object
@@ -256,7 +259,7 @@ while True:
 					totalDetection = totalDetection + 1
 					print("reset")
 					list_time = []
-					data.log_detection({'EPOCH_TIME': time.time(), 'TOTAL': totalPeople, 'DISINFECTED': totalDetection})
+					data.log_detection({'SESSION_ID': session_id,'EPOCH_TIME': time.time(), 'EVENT' : 'DISENFECTED'}) 
 
 
 

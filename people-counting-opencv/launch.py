@@ -16,12 +16,16 @@ if path.exists("config.ini"):
     webcam.set(config_object.getboolean("VIDEOSTREAM","webcam"))
     video_input_file = config_object.get("VIDEOSTREAM","video_input")
     skipped_frames = config_object.get("MODEL","skipped_frames")
+    seperate_session_logging_files = tk.BooleanVar()
+    seperate_session_logging_files.set(config_object.getboolean("LOGGING","seperate_session_logging_files"))
 
 else:
     webcam = tk.BooleanVar()
     webcam.set(True)
     video_input_file = ""
     skipped_frames = 30
+    seperate_session_logging_files = tk.BooleanVar()
+    seperate_session_logging_files.set(True)
 
 
 def run():
@@ -36,9 +40,6 @@ def run():
     else:
         subprocess.call(['python', 'people_counter.py'] + protox + model + input + skip_frames)
 
-    
-file_entry = tk.Entry(master)
-file_entry.insert(0,video_input_file)
 
 def browseFiles():
     filename = filedialog.askopenfilename(initialdir = "/",
@@ -52,33 +53,53 @@ def browseFiles():
     file_entry.delete(0,'end')
     file_entry.insert(0,filename)
 
+file_entry = tk.Entry(master)
+file_entry.insert(0,video_input_file)
 
-
-tk.Label(master, 
-         text="Video").grid(row=0,padx=(10, 10))
-tk.Label(master, 
-         text="Webcam").grid(row=1,padx=(10, 10))
-tk.Label(master, 
-         text="Skipped frames").grid(row=2,padx=(10, 10))
-
-
-webcam_checkbox = tk.Checkbutton(master,variable=webcam, onvalue=True, offvalue=False)
-skipped_frames_entry = tk.Entry(master)
-skipped_frames_entry.insert(0,skipped_frames)
-if webcam.get():
-    webcam_checkbox.select()
 button_explore = tk.Button(master, 
                         text = "Browse Files",
                         command = browseFiles, padx=10) 
 
-file_entry.grid(row=0, column=1)
-button_explore.grid(row=0,column=2, padx=(10, 10))
-webcam_checkbox.grid(row=1, column=1)
-skipped_frames_entry.grid(row=2,column=1)
+
+tk.Label(master,text="Videostream",font='Helvetica 12 bold').grid(row=0,padx=(10,10),pady=10)
+tk.Label(master, 
+         text="Video").grid(row=1,padx=(10, 10))
+tk.Label(master, 
+         text="Webcam").grid(row=2,padx=(10, 10))
+
+tk.Label(master, 
+         text="Model",font='Helvetica 12 bold').grid(row=4,padx=(10, 10),pady=10)
+
+tk.Label(master, 
+         text="Skipped frames").grid(row=5,padx=(10, 10))
+
+tk.Label(master, 
+         text="Logging",font='Helvetica 12 bold').grid(row=6,padx=(10, 10),pady=10)
+
+tk.Label(master, 
+         text="Seperate session logging files").grid(row=7,padx=(10, 10),pady=0)
+
+webcam_checkbox = tk.Checkbutton(master,variable=webcam, onvalue=True, offvalue=False)
+skipped_frames_entry = tk.Entry(master)
+skipped_frames_entry.insert(0,skipped_frames)
+seperate_session_logging_files_checkbox = tk.Checkbutton(master,variable=seperate_session_logging_files,onvalue=True,offvalue=False)
+
+if webcam.get():
+    webcam_checkbox.select()
+
+if seperate_session_logging_files.get():
+    seperate_session_logging_files_checkbox.select()
+
+
+file_entry.grid(row=1, column=1)
+button_explore.grid(row=1,column=2, padx=(10, 10))
+webcam_checkbox.grid(row=2, column=1)
+skipped_frames_entry.grid(row=5,column=1)
+seperate_session_logging_files_checkbox.grid(row=7,column=1)
 
 
 def save():
-    global webcam, file_entry, video_input_file
+    global webcam, file_entry, video_input_file,seperate_session_logging_files
     video_input_file = file_entry.get()
     skipped_frames = skipped_frames_entry.get()
 
@@ -91,19 +112,23 @@ def save():
         "skipped_frames": skipped_frames,
     }
 
+    config_object["LOGGING"] = {
+        "seperate_session_logging_files" : seperate_session_logging_files.get()
+    }
+
     with open('config.ini', 'w') as conf:
         config_object.write(conf)
 
 tk.Button(master, 
           text='Save', 
-          command=save).grid(row=3, 
+          command=save).grid(row=8, 
                                     column=0, 
                                     sticky=tk.W, 
-                                    pady=4,padx=10)
+                                    pady=(20,10),padx=10)
 tk.Button(master, 
-          text='Run', command=run).grid(row=3, 
+          text='Run', command=run).grid(row=8, 
                                                        column=2, 
                                                        sticky=tk.W, 
-                                                       pady=4,padx=10)
+                                                       pady=(20,10),padx=10)
 
 tk.mainloop()
