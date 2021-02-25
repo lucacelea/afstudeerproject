@@ -322,7 +322,7 @@ while True:
 
 	# show the output frame
 	cv2.circle(frame, middelpunt, radius, (0, 255, 0), 2)
-	cv2.imshow("Frame", frame)
+	cv2.imshow("Video, press q to quit", frame)
 	key = cv2.waitKey(1) & 0xFF
 
 	# if the `q` key was pressed, break from the loop
