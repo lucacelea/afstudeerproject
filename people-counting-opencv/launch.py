@@ -36,9 +36,9 @@ def run():
     skip_frames = ["-s",skipped_frames]
     
     if webcam.get():
-        subprocess.call(['python', 'people_counter.py'] + protox + model + skip_frames)
+        subprocess.call(['python3', 'people_counter.py'] + protox + model + skip_frames)
     else:
-        subprocess.call(['python', 'people_counter.py'] + protox + model + input + skip_frames)
+        subprocess.call(['python3', 'people_counter.py'] + protox + model + input + skip_frames)
 
 
 def browseFiles():
