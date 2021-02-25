@@ -23,7 +23,7 @@ else:
     webcam = tk.BooleanVar()
     webcam.set(True)
     video_input_file = ""
-    skipped_frames = 30
+    skipped_frames = 1
     seperate_session_logging_files = tk.BooleanVar()
     seperate_session_logging_files.set(True)
 
@@ -145,7 +145,7 @@ def reset():
     webcam_checkbox.select()
     file_entry.delete(0,'end')
     skipped_frames_entry.delete(0,'end')
-    skipped_frames_entry.insert(0,30)
+    skipped_frames_entry.insert(0,1)
     seperate_session_logging_files_checkbox.select()
     save()
 
