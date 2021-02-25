@@ -24,6 +24,11 @@ import dispenser
 import datetime
 import csv
 import data
+
+#create session id in epoch time
+
+session_id = int(time.time())
+
 # construct the argument parse and parse the arguments
 ap = argparse.ArgumentParser()
 # ap.add_argument("-p", "--prototxt", required=True,
@@ -254,8 +259,7 @@ while True:
 				if direction < 0 and (H // 2 + 150) >= centroid[1] >= (H//2 - 150):
 					totalPeople += 1
 					to.counted = True
-					data.log_detection({'EPOCH_TIME': time.time(), 'TOTAL':totalPeople, 'DISINFECTED': totalDetection})
-					
+					data.log_detection({'SESSION_ID': session_id,'EPOCH_TIME': time.time(), 'EVENT' : 'ENTERED'})					
 
 				# if the direction is positive (indicating the object
 				# is moving down) AND the centroid is below the
@@ -283,7 +287,7 @@ while True:
 					list_time.pop(objectID)
 					list_ontsmet.append(objectID)
 					totalDetection = totalDetection + 1
-					data.log_detection({'EPOCH_TIME': time.time(), 'TOTAL': totalPeople, 'DISINFECTED': totalDetection})
+					data.log_detection({'SESSION_ID': session_id,'EPOCH_TIME': time.time(), 'EVENT' : 'DISINFECTED'})
 
 		# store the trackable object in our dictionary
 		trackableObjects[objectID] = to
