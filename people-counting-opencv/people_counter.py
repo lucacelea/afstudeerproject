@@ -26,10 +26,8 @@ import data
 
 # construct the argument parse and parse the arguments
 ap = argparse.ArgumentParser()
-ap.add_argument("-p", "--prototxt", required=True,
-	help="path to Caffe 'deploy' prototxt file")
-ap.add_argument("-m", "--model", required=True,
-	help="path to Caffe pre-trained model")
+ap.add_argument("-m", "--model", default=False,action='store_true',
+	help="Use alternative model")
 ap.add_argument("-i", "--input", type=str,
 	help="path to optional input video file")
 ap.add_argument("-o", "--output", type=str,
@@ -46,14 +44,34 @@ session_id = int(time.time())
 
 # initialize the list of class labels MobileNet SSD was trained to
 # detect
-CLASSES = ["background", "aeroplane", "bicycle", "bird", "boat",
+
+
+# load our serialized model from disk
+print("[INFO] loading model...")
+
+if args.get('model'):
+	CLASSES = [ "person", "bicycle", "car", "motorcycle",
+            "airplane", "bus", "train", "truck", "boat", "traffic light", "fire hydrant",
+            "unknown", "stop sign", "parking meter", "bench", "bird", "cat", "dog", "horse",
+            "sheep", "cow", "elephant", "bear", "zebra", "giraffe", "unknown", "backpack",
+            "umbrella", "unknown", "unknown", "handbag", "tie", "suitcase", "frisbee", "skis",
+            "snowboard", "sports ball", "kite", "baseball bat", "baseball glove", "skateboard",
+            "surfboard", "tennis racket", "bottle", "unknown", "wine glass", "cup", "fork", "knife",
+            "spoon", "bowl", "banana", "apple", "sandwich", "orange", "broccoli", "carrot", "hot dog",
+            "pizza", "donut", "cake", "chair", "couch", "potted plant", "bed", "unknown", "dining table",
+            "unknown", "unknown", "toilet", "unknown", "tv", "laptop", "mouse", "remote", "keyboard",
+            "cell phone", "microwave", "oven", "toaster", "sink", "refrigerator", "unknown",
+            "book", "clock", "vase", "scissors", "teddy bear", "hair drier", "toothbrush" ] 
+
+	net = cv2.dnn.readNetFromTensorflow('faster_rcnn_inception_v2_coco_2018_01_28/frozen_inference_graph.pb', 'faster_rcnn_inception_v2_coco_2018_01_28/faster_rcnn_inception_v2_coco_2018_01_28.pbtxt')
+
+else:
+	CLASSES = ["background", "aeroplane", "bicycle", "bird", "boat",
 	"bottle", "bus", "car", "cat", "chair", "cow", "diningtable",
 	"dog", "horse", "motorbike", "person", "pottedplant", "sheep",
 	"sofa", "train", "tvmonitor"]
 
-# load our serialized model from disk
-print("[INFO] loading model...")
-net = cv2.dnn.readNetFromCaffe(args["prototxt"], args["model"])
+	net = cv2.dnn.readNetFromCaffe("mobilenet_ssd\MobileNetSSD_deploy.prototxt", "mobilenet_ssd\MobileNetSSD_deploy.caffemodel")
 
 # if a video path was not supplied, grab a reference to the webcam
 if not args.get("input", False):
@@ -104,7 +122,12 @@ while True:
 	inside = False
 	# grab the next frame and handle if we are reading from either
 	# VideoCapture or VideoStream
-	_, frame = vs.read()
+
+	if not args.get("input", False):
+		_, frame = vs.read()
+	else:
+		frame = vs.read()
+		
 	frame = frame[1] if args.get("input", False) else frame
 
 	# if we are viewing a video and we did not grab a frame then we
@@ -144,9 +167,14 @@ while True:
 
 		# convert the frame to a blob and pass the blob through the
 		# network and obtain the detections
-		blob = cv2.dnn.blobFromImage(frame, 0.007843, (W, H), 127.5)
-		net.setInput(blob)
-		detections = net.forward()
+		
+		if args.get('model'):
+			net.setInput(cv2.dnn.blobFromImage(frame, swapRB=True))
+			detections = net.forward()
+		else:
+			blob = cv2.dnn.blobFromImage(frame, 0.007843, (W, H), 127.5)
+			net.setInput(blob)
+			detections = net.forward()
 
 		# loop over the detections
 		for i in np.arange(0, detections.shape[2]):
