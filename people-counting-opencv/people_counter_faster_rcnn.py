@@ -102,8 +102,9 @@ totalFrames = 0
 totalPeople = 0
 totalDetection = 0
 t = 0
-list_time = []
+list_time = {}
 list_ontsmet = []
+
 
 # start the frames per second throughput estimator
 fps = FPS().start()
@@ -114,9 +115,10 @@ middelpunt, radius = dispenser.dispenser("room_photo.jpg")
 
 # loop over frames from the video stream
 while True:
+	inside = False
 	# grab the next frame and handle if we are reading from either
 	# VideoCapture or VideoStream
-	frame = vs.read()
+	_, frame = vs.read()
 	frame = frame[1] if args.get("input", False) else frame
 
 	# if we are viewing a video and we did not grab a frame then we
@@ -264,15 +266,23 @@ while True:
 
 			distance = pow(pow((middelpunt[0] - centroid[0]), 2) + pow((middelpunt[1] - centroid[1]), 2), (1 / 2))
 			if distance <= radius and not list_ontsmet.__contains__(objectID):
+				inside = True
 				t = time.time()
-				list_time.append(t)
+				found = False
+				for x in list_time:
+					if x == objectID:
+						list_time[objectID].append(t)
+						found = True
+				if not found:
+					list_time[objectID] = [t]
+
 				print("!!!!!!!!detection!!!!!!!! ", t)
-				if list_time[len(list_time) - 1] - list_time[0] >= 2.5:
+				times = list_time[objectID]
+				if times[len(times) - 1] - times[0] >= 2.5:
 					print("Disinfection counted")
+					list_time.pop(objectID)
 					list_ontsmet.append(objectID)
 					totalDetection = totalDetection + 1
-					print("reset")
-					list_time = []
 					data.log_detection({'EPOCH_TIME': time.time(), 'TOTAL': totalPeople, 'DISINFECTED': totalDetection})
 
 		# store the trackable object in our dictionary
@@ -285,6 +295,9 @@ while True:
 			cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 255, 0), 2)
 		cv2.circle(frame, (centroid[0], centroid[1]), 4, (0, 255, 0), -1)
 
+	if not inside:
+		print("reset")
+		list_time = {}
 	# construct a tuple of information we will be displaying on the
 	# frame
 	info = [
