@@ -25,8 +25,6 @@ def dispenser(img):
         # grab references to the global variables
         global ref_point, drawing, clone, image
 
-        print(ref_point)
-
         # if the left mouse button was clicked, record the starting
         # (x, y) coordinates and indicate that cropping is being
         # performed
