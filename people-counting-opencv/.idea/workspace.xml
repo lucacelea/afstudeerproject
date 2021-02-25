@@ -2,11 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="def9a5bb-ecf4-41cb-bdf7-ed5f5553153a" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/../Documentatie/scope &amp; vision.docx" beforeDir="false" afterPath="$PROJECT_DIR$/../Documentatie/scope &amp; vision.docx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dispenser.py" beforeDir="false" afterPath="$PROJECT_DIR$/dispenser.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config.ini" beforeDir="false" afterPath="$PROJECT_DIR$/config.ini" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/people_counter.py" beforeDir="false" afterPath="$PROJECT_DIR$/people_counter.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/people_counter_faster_rcnn.py" beforeDir="false" afterPath="$PROJECT_DIR$/people_counter_faster_rcnn.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/people_counter_video.py" beforeDir="false" afterPath="$PROJECT_DIR$/people_counter_video.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -30,6 +29,7 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
