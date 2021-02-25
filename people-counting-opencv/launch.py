@@ -28,18 +28,6 @@ else:
     seperate_session_logging_files.set(True)
 
 
-def run():
-    master.destroy()
-    protox = ["-p","mobilenet_ssd/MobileNetSSD_deploy.prototxt"]
-    model = ["-m","mobilenet_ssd/MobileNetSSD_deploy.caffemodel"]
-    input = ["-i",video_input_file]
-    skip_frames = ["-s",skipped_frames]
-    
-    if webcam.get():
-        subprocess.call(['python3', 'people_counter.py'] + protox + model + skip_frames)
-    else:
-        subprocess.call(['python3', 'people_counter.py'] + protox + model + input + skip_frames)
-
 
 def browseFiles():
     filename = filedialog.askopenfilename(initialdir = "/",
@@ -79,13 +67,34 @@ tk.Label(master,
 tk.Label(master, 
          text="Seperate session logging files").grid(row=7,padx=(10, 10),pady=0)
 
-webcam_checkbox = tk.Checkbutton(master,variable=webcam, onvalue=True, offvalue=False)
+
+def webcam_checkbox_change():
+    if webcam.get():
+        disableEntry()
+    else:
+        enableEntry()
+
+def enableEntry():
+    file_entry.configure(state="normal")
+    file_entry.update()
+    button_explore.configure(state="normalgit")
+    button_explore.update()
+
+def disableEntry():
+    file_entry.configure(state="disabled")
+    file_entry.update()
+    button_explore.configure(state="disabled")
+    button_explore.update()
+
+
+webcam_checkbox = tk.Checkbutton(master,variable=webcam, onvalue=True, offvalue=False,command=webcam_checkbox_change)
 skipped_frames_entry = tk.Entry(master)
 skipped_frames_entry.insert(0,skipped_frames)
 seperate_session_logging_files_checkbox = tk.Checkbutton(master,variable=seperate_session_logging_files,onvalue=True,offvalue=False)
 
 if webcam.get():
     webcam_checkbox.select()
+    webcam_checkbox_change()
 
 if seperate_session_logging_files.get():
     seperate_session_logging_files_checkbox.select()
@@ -119,12 +128,40 @@ def save():
     with open('config.ini', 'w') as conf:
         config_object.write(conf)
 
+def run():
+    save()
+    master.destroy()
+    protox = ["-p","mobilenet_ssd/MobileNetSSD_deploy.prototxt"]
+    model = ["-m","mobilenet_ssd/MobileNetSSD_deploy.caffemodel"]
+    input = ["-i",video_input_file]
+    skip_frames = ["-s",skipped_frames]
+
+    if webcam.get():
+        subprocess.call(['python3', 'people_counter.py'] + protox + model + skip_frames)
+    else:
+        subprocess.call(['python3', 'people_counter.py'] + protox + model + input + skip_frames)
+
+def reset():
+    webcam_checkbox.select()
+    file_entry.delete(0,'end')
+    skipped_frames_entry.delete(0,'end')
+    skipped_frames_entry.insert(0,30)
+    seperate_session_logging_files_checkbox.select()
+    save()
+
+
 tk.Button(master, 
           text='Save', 
           command=save).grid(row=8, 
                                     column=0, 
                                     sticky=tk.W, 
                                     pady=(20,10),padx=10)
+tk.Button(master, 
+          text='Reset', command=reset).grid(row=8, 
+                                                       column=1, 
+                                                       sticky=tk.W, 
+                                                       pady=(20,10),padx=10)
+
 tk.Button(master, 
           text='Run', command=run).grid(row=8, 
                                                        column=2, 
