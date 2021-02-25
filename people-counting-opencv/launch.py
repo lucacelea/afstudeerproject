@@ -146,14 +146,17 @@ def run():
     master.destroy()
     input = ["-i",video_input_file]
     skip_frames = ["-s",skipped_frames]
-    model_flag = [""]
-    if model.get():
-        model_flag = ["-m"]
         
     if webcam.get():
-        subprocess.call(['python3', 'people_counter.py'] + skip_frames + model_flag)
+        if model.get():
+            subprocess.call(['python3', 'people_counter.py'] + skip_frames + ["-m"])
+        else:
+            subprocess.call(['python3', 'people_counter.py'] + skip_frames)
     else:
-        subprocess.call(['python3', 'people_counter.py'] + input + skip_frames + model_flag)
+        if model.get():
+            subprocess.call(['python3', 'people_counter.py'] + input + skip_frames + ["-m"])
+        else:
+            subprocess.call(['python3', 'people_counter.py'] + input + skip_frames)
 
 def reset():
     webcam_checkbox.select()
