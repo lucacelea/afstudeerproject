@@ -66,13 +66,26 @@ Om Cuda te installeren kan je heel wat verschillende methodes gebruiken. Volgend
 
 Als alle goed is verlopen zou u nu Cuda en cuDNN correct geinstalleerd hebben. Om u installatie te controleren kunt u altijd de Cuda Toolkit samples gebruiken. 
 
-### TensorFlow Installeren
+### TensorFlow
 
-Voer het volgende command uit in een Terminal venster:
+#### Installeren
 
-```bash
-pip install --ignore-installed --upgrade tensorflow==2.4.0
-```
+1. Voer het volgende command uit in een Terminal venster:
 
+   ```bash
+   pip install --ignore-installed --upgrade tensorflow==2.4.0
+   ```
 
+2.  U kan het volgende commando gebruiken om te testen als de installatie succesvol was
 
+   ```
+   
+   ```
+
+   
+
+3. Als dat succesvol was kan je ook testen als de installatie van Cuda, cuDNN goed samenwerkt met Tensorflow. Dit doet je met volgende commando.
+
+   ```bash
+   python -c "import tensorflow as tf;print(tf.reduce_sum(tf.random.normal([1000, 1000])))"
+   ```
