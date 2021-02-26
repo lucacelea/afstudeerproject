@@ -44,6 +44,12 @@ Installeer cython
 sudo apt install cython3
 ```
 
+Installeer tkinter
+```bash
+sudo apt install python3-tk
+```
+
+
 Installeer de dependencies vanuit het requirements bestand.
 
 ```bash
