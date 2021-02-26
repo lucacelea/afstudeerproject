@@ -4,88 +4,76 @@ Om ons eigen model te trainen zullen we gebruik maken van Tensorflow 2 en hun bi
 
 [TOC]
 
-
-
-### Cuda & CUDnn installeren
+## Cuda & CUDnn installeren
 
 <u>Bij het installeren van Cuda is het zeer belangrijk om na te dat de versies van TensorFlow, Cuda en CUDnn compatibel zijn. Moest u zelf een andere versie willen installeren controleer dan zeker [*de lijst van TensorFlow zelf.*](https://www.tensorflow.org/install/source#gpu "Tensorflow Compatibility List")</u>
 
-
-
-#### Cuda installeren
+### Cuda installeren
 
 [Nvidia Cuda install Documentatie](https://docs.nvidia.com/cuda/cuda-installation-guide-linux/index.html "Nvidia Documentatie")
 
-Om Cuda te installeren kan je heel wat verschillende methodes gebruiken. Volgende methode gaf voor ons de meest succesvolle resultaten.
+Om Cuda te installeren kan je heel wat verschillende methodes gebruiken. Volgende methode gaf voor ons project de meest succesvolle resultaten.
 
-1. Download Cuda Toolkit 11.0  van de Nvidia website
+Download Cuda Toolkit 11.0 van de Nvidia website
 
    [Cuda Toolkit 11.0 Download](https://developer.nvidia.com/cuda-11.0-download-archive?target_os=Linux&amp;target_arch=x86_64&amp;target_distro=Ubuntu&amp;target_version=1804 "Cuda Toolkit 11.0") -->  Linux > x86_64 < Ubuntu < 18.04 < runfile (local) 
 
-2. Als deze download gedaan is open je in Terminal window in de directory waar de runfile staat en voer je deze uit.
+Als deze download gedaan is open je in Terminal window in de directory waar de runfile staat en voer je deze uit.
 
-   <sub>Het opstarten van deze runfile kan soms wat lang duren </sub>
+<sub>Het opstarten van deze runfile kan lang duren </sub>
 
-   ```bash
-   sudo sh cuda_11.0.2_450.51.05_linux.run
-   ```
+```bash
+sudo sh cuda_11.0.2_450.51.05_linux.run
+```
 
    Volg deze install, wij installeren telkens alles behalve dat we de optie om een nieuwe Nvidia driver te installeren deselecteren. Dit zorgde vaak voor ons dat het fout loopt. Moest u toch een nieuwe Nvidia driver willen installeren doe je dit naar onze mening best afzonderlijk.
 
    Ook hier kan het soms wat langer duren maar als alles goed verloopt zou je als de installatie klaar is output moeten zien dat bevestigd dat de install correct is verlopen.
 
-#### Cudnn installeren
+### Cudnn installeren
 
 [Nvidia cuDNN install Documentatie](https://docs.nvidia.com/deeplearning/cudnn/install-guide/index.html "Nvidia cuDNN install Documentatie]")
 
-1.  Download de cuDNN library uit de Archive
+Download de cuDNN library uit de Archive
 
    [cuDNN Download](https://developer.nvidia.com/rdp/cudnn-download "cuDNN Download"), we downloaden de "[cuDNN Library for Linux (x86_64)](https://developer.nvidia.com/compute/machine-learning/cudnn/secure/8.0.5/11.0_20201106/cudnn-11.0-linux-x64-v8.0.5.39.tgz)"
 
    ![image-20210226130742952](https://github.com/lucacelea/Afstudeerproject/blob/main/Documentatie/docs_images/model%20trainen/image-20210226130742952.png)
+<sub>Let goed op dat u de juiste cuDNN versie installeert, de versie dat wij gebruiken dat compatibel is met TensorFlow 2.4.0 en Cuda 11.0 is cuDNN 8.0.5. Deze is te vinden in de Archive.</sub>
 
-   <sub>Let goed op dat u de juiste cuDNN versie installeert, de versie dat wij gebruiken dat compatibel is met TensorFlow 2.4.0 en Cuda 11.0 is cuDNN 8.0.5. Deze is te vinden in de Archive.</sub>
+Unzip de cuDNN package
 
-   
+```bash
+tar -xzvf cudnn-11.0-linux-x64-v8.0.5.39.tgz
+```
+Kopieer de volgende file naar de Cuda Toolkit directory
 
-2.  Als de download gedaan is open je een Terminal in de directory waar de tgz file staat
-    1. Unzip de cuDNN package
-
-      ```bash
-      tar -xzvf cudnn-11.0-linux-x64-v8.0.5.39.tgz
-      ```
-    2. Kopieer de volgende file naar de Cuda Toolkit directory
-
-      ```bash
-      sudo cp cuda/include/cudnn*.h /usr/local/cuda/include 
-      sudo cp -P cuda/lib64/libcudnn* /usr/local/cuda/lib64 
-      sudo chmod a+r /usr/local/cuda/include/cudnn*.h /usr/local/cuda/lib64/libcudnn*
-      ```
-
-
+```bash
+sudo cp cuda/include/cudnn*.h /usr/local/cuda/include 
+sudo cp -P cuda/lib64/libcudnn* /usr/local/cuda/lib64 
+sudo chmod a+r /usr/local/cuda/include/cudnn*.h /usr/local/cuda/lib64/libcudnn*
+```
 
 Als alle goed is verlopen zou u nu Cuda en cuDNN correct geinstalleerd hebben. Om u installatie te controleren kunt u altijd de Cuda Toolkit samples gebruiken. 
 
-### TensorFlow
+## TensorFlow
 
-#### Installeren
+### Installeren
 
-1. Voer het volgende command uit in een Terminal venster:
+Voer het volgende command uit in een Terminal venster:
 
-   ```bash
-   pip install --ignore-installed --upgrade tensorflow==2.4.0
-   ```
+```bash
+pip install --ignore-installed --upgrade tensorflow==2.4.0
+```
 
-2.  U kan het volgende commando gebruiken om te testen als de installatie succesvol was
+Volgend commando kan gebruikt worden om te testen of de installatie succesvol was
 
-   ```
-   
-   ```
+```
 
-   
+```
 
-3. Als dat succesvol was kan je ook testen als de installatie van Cuda, cuDNN goed samenwerkt met Tensorflow. Dit doet je met volgende commando.
+Als dat commando succesvol was, kan nagegaan worden of de installatie samen werkt met Tensorflow. Dit door volgend commando te gebruiken.
 
-   ```bash
-   python -c "import tensorflow as tf;print(tf.reduce_sum(tf.random.normal([1000, 1000])))"
-   ```
+```bash
+python -c "import tensorflow as tf;print(tf.reduce_sum(tf.random.normal([1000, 1000])))"
+```
