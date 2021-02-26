@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+cython==0.29.22
 apt-clone==0.2.1
 apturl==0.5.2
 asn1crypto==0.24.0
@@ -7,10 +7,8 @@ blinker==1.4
 Brlapi==0.6.6
 certifi==2018.1.18
 chardet==3.0.4
-=======
 scikit-learn==0.21.2
 scipy==1.1.0
->>>>>>> 0443c73e1afd57b588e5f92749dc771083e34ad7
 cmake==3.18.4.post1
 configparser==5.0.1
 cryptography==2.1.4
@@ -63,7 +61,7 @@ pyxdg==0.25
 PyYAML==3.12
 requests==2.18.4
 requests-unixsocket==0.1.5
-scipy==0.19.1
+scipy
 SecretStorage==2.3.1
 simplejson==3.13.2
 six==1.11.0

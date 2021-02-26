@@ -14,6 +14,12 @@ Om het project op te zetten, maken we gebruik van een Jetpack image (deze is geb
 
 Eenmaal de Jetson opgestart is kunnen de dependencies voor het project installeren. Hiervoor maken we gebruik van een requirements tekst bestand.
 
+Install nodige packages
+
+```bash
+sudo apt-get install libatlas-base-dev libblas3 liblapack3 liblapack-dev libblas-dev gfortran
+```
+
 Clone de repository van [ons project op GitHub](https://github.com/lucacelea/Afstudeerproject/).
 
 ```bash
