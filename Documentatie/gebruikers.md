@@ -9,7 +9,9 @@ Open de terminal en navigeer naar de directory waarin de launch.py file staat.
 
 Eens je in de directory zit, run je het volgende commando:
 
-* OPENBLAS_CORETYPE=ARMV8 python3 launch.py
+```bash
+OPENBLAS_CORETYPE=ARMV8 python3 launch.py
+```
 
 ### Configuratie scherm
 
