@@ -1,4 +1,4 @@
-# Beschikbare hardware:
+# Beschikbare hardware
 
 Voor ons project hebben we volgende hardware ter beschikking gekregen:
 
@@ -8,7 +8,7 @@ Voor ons project hebben we volgende hardware ter beschikking gekregen:
 - Coral Development Board & Accelerator
 - 4k netwerkcamera
 
-# Verslag gebruik:
+# Verslag gebruik
 
 Coral bordje is underpowered, maar hebben we wel gebruikt om de dispenser te detecteren aan de hand van QR-codes, logos en tekstrecognition. Deze hebben we hiervoor uiteindelijk niet kunnen gebruiken, omdat we overgingen naar een statische detectiezone voor het detecteren van ontsmetting. Alle onderstaande pogingen tot computer vision zijn op de Jetson Xavier.
 
