@@ -25,7 +25,7 @@ Clone de repository van [ons project op GitHub](https://github.com/lucacelea/Afs
 ```bash
 git clone https://github.com/lucacelea/Afstudeerproject/
 
-cd Afstudeerproject
+cd Afstudeerproject/dds
 ```
 
 Installeer pip3 en upgrade.
