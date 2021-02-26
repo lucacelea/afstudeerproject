@@ -49,14 +49,12 @@ Om Cuda te installeren kan je heel wat verschillende methodes gebruiken. Volgend
    
 
 2.  Als de download gedaan is open je een Terminal in de directory waar de tgz file staat
-
-   1. Unzip de cuDNN package
+    1. Unzip de cuDNN package
 
       ```bash
       tar -xzvf cudnn-11.0-linux-x64-v8.0.5.39.tgz
       ```
-
-   2. Kopieer de volgende file naar de Cuda Toolkit directory
+    2. Kopieer de volgende file naar de Cuda Toolkit directory
 
       ```bash
       sudo cp cuda/include/cudnn*.h /usr/local/cuda/include 
