@@ -6,13 +6,13 @@ Om ons eigen model te trainen zullen we gebruik maken van Tensorflow 2 en hun bi
 
 
 
-##### Cuda & CUDnn installeren
+### Cuda & CUDnn installeren
 
 <u>Bij het installeren van Cuda is het zeer belangrijk om na te dat de versies van TensorFlow, Cuda en CUDnn compatibel zijn. Moest u zelf een andere versie willen installeren controleer dan zeker [*de lijst van TensorFlow zelf.*](https://www.tensorflow.org/install/source#gpu "Tensorflow Compatibility List")</u>
 
 
 
-###### Cuda installeren
+#### Cuda installeren
 
 [Nvidia Cuda install Documentatie](https://docs.nvidia.com/cuda/cuda-installation-guide-linux/index.htm l "Nvidia Documentatie")
 
@@ -34,7 +34,7 @@ Om Cuda te installeren kan je heel wat verschillende methodes gebruiken. Volgend
 
    Ook hier kan het soms wat langer duren maar als alles goed verloopt zou je als de installatie klaar is output moeten zien dat bevestigd dat de install correct is verlopen.
 
-###### Cudnn installeren
+#### Cudnn installeren
 
 [Nvidia cuDNN install Documentatie](https://docs.nvidia.com/deeplearning/cudnn/install-guide/index.html "Nvidia cuDNN install Documentatie]")
 
@@ -66,7 +66,7 @@ Om Cuda te installeren kan je heel wat verschillende methodes gebruiken. Volgend
 
 Als alle goed is verlopen zou u nu Cuda en cuDNN correct geinstalleerd hebben. Om u installatie te controleren kunt u altijd de Cuda Toolkit samples gebruiken. 
 
-##### TensorFlow Installeren
+### TensorFlow Installeren
 
 Voer het volgende command uit in een Terminal venster:
 
