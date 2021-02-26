@@ -1,6 +1,6 @@
 # Gebruikershandleiding
 
-### Opstarten van het systeem
+## Opstarten van het systeem
 
 Wanneer je alle dependencies hebt geïnstalleerd en de camera juist hebt opgehangen (zie installatie handleiding),  kan je beginnen met opstarten van het systeem.
 
@@ -13,13 +13,13 @@ Eens je in de directory zit, run je het volgende commando:
 OPENBLAS_CORETYPE=ARMV8 python3 launch.py
 ```
 
-### Configuratie scherm
+## Configuratie scherm
 
 Eerste scherm na runnen van bovenstaande commando
 
 ![](C:\Users\jefqu\Desktop\scherm 1.JPG)
 
-#### Legende:
+### Legende:
 
 * Video of camera: 
   Het systeem kan twee soorten inputs aan. Of je kiest voor camera, of je kiest een video bestand dat je lokaal op de computer hebt staan
@@ -46,7 +46,7 @@ Eerste scherm na runnen van bovenstaande commando
 * Run:
   Systeem runnen met geselecteerde configuraties
 
-### Setup scherm
+## Setup scherm
 
 ![](C:\Users\jefqu\Desktop\scherm 2.JPG)
 
@@ -56,7 +56,7 @@ Het setup scherm dient om de disinfectie zone aan te duiden. Hier zullen we het 
 
 De cirkel dient dus om de disinfectie zone aan te duiden. Als een gedetecteerd persoon in deze cirkel staat voor een voldoende aantal seconden, dan zal deze geteld worden als een persoon die zijn handen heeft ontsmet. Wanneer je de cirkel opnieuw wilt trekken, druk je op de r-toets. Als je tevreden bent met de cirkel en de cirkel wilt bevestigen dan druk je op de c-toets.
 
-### Running scherm
+## Running scherm
 
 Vervolgens krijgen we het onderstaande scherm te zien.
 
@@ -65,7 +65,7 @@ Vervolgens krijgen we het onderstaande scherm te zien.
 Dit is de live feed/video dat word afgespeeld. Zoals je ziet staat de door jouw geselecteerde cirkel op het scherm. Links zie je de telers. Disinfection is het aantal mensen dat hun handen hebben ontsmet tijdens de gestarte sessie. People zijn het totaal aantal mensen die gedetecteerd zijn tijdens de gestarte sessie. De gele lijn is de zone waarrond we de gedetecteerde mensen gaan tellen.
 Als we het systeem willen afsluiten, dan drukken we op de q-toets.
 
-### Data
+## Data
 
 Eens het systeem is afgesloten, kan je de sd-kaart uit de hardware halen en in uw computer steken. Vervolgens vind je de data in dezelfde directory als de launch.py file. In deze directory zie je één of meerdere csv files staan. Kies de juiste en open deze in Excel. Mogelijks krijg je onderstaand scherm te zien.
 
