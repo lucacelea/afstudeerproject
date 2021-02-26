@@ -16,7 +16,7 @@ Eenmaal de Jetson opgestart is kunnen de dependencies voor het project installer
 
 Install nodige packages
 
-``bash
+```bash
 sudo apt update
 ```
 
@@ -40,7 +40,7 @@ sudo python3 -m pip install --upgrade pip
 ```
 
 Installeer cython
-``bash
+```bash
 sudo apt install cython3
 ```
 
