@@ -2,14 +2,13 @@
 
 ## Opstarten van het systeem
 
-Wanneer je alle dependencies hebt geïnstalleerd en de camera juist hebt opgehangen (zie installatie handleiding),  kan je beginnen met opstarten van het systeem.
+Wanneer de dependencies geïnstalleerd zijn en de camera juist opgehangen is ([zie installatiehandleiding](https://github.com/lucacelea/Afstudeerproject/blob/main/doc/installatie.md)), kan het project opgestart worden.
 
-Open de terminal en navigeer naar de directory waarin de launch.py file staat.
-(Hoogstwaarschijnlijk onder Afstudeerproject/people-counting-opencv, als je onze github hebt gecloned)
-
-Eens je in de directory zit, run je het volgende commando:
+Om het project op te starten moet volgende commando in de juiste directory gerunned worden.
 
 ```bash
+cd [PATH_TO_REPOSITORY]/Afstudeerproject/dds
+
 OPENBLAS_CORETYPE=ARMV8 python3 launch.py
 ```
 
