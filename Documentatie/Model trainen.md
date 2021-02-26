@@ -6,15 +6,15 @@ Om ons eigen model te trainen zullen we gebruik maken van Tensorflow 2 en hun bi
 
 
 
-### Cuda & CUDnn installeren
+##### Cuda & CUDnn installeren
 
 <u>Bij het installeren van Cuda is het zeer belangrijk om na te dat de versies van TensorFlow, Cuda en CUDnn compatibel zijn. Moest u zelf een andere versie willen installeren controleer dan zeker [*de lijst van TensorFlow zelf.*](https://www.tensorflow.org/install/source#gpu "Tensorflow Compatibility List")</u>
 
 
 
-#### Cuda installeren
+###### Cuda installeren
 
-[Nvidia Cuda install Documentatie](https://docs.nvidia.com/cuda/cuda-installation-guide-linux/index.html "Nvidia Documentatie")
+[Nvidia Cuda install Documentatie](https://docs.nvidia.com/cuda/cuda-installation-guide-linux/index.htm l "Nvidia Documentatie")
 
 Om Cuda te installeren kan je heel wat verschillende methodes gebruiken. Volgende methode gaf voor ons de meest succesvolle resultaten.
 
@@ -34,7 +34,7 @@ Om Cuda te installeren kan je heel wat verschillende methodes gebruiken. Volgend
 
    Ook hier kan het soms wat langer duren maar als alles goed verloopt zou je als de installatie klaar is output moeten zien dat bevestigd dat de install correct is verlopen.
 
-#### Cudnn installeren
+###### Cudnn installeren
 
 [Nvidia cuDNN install Documentatie](https://docs.nvidia.com/deeplearning/cudnn/install-guide/index.html "Nvidia cuDNN install Documentatie]")
 
@@ -42,9 +42,11 @@ Om Cuda te installeren kan je heel wat verschillende methodes gebruiken. Volgend
 
    [cuDNN Download](https://developer.nvidia.com/rdp/cudnn-download "cuDNN Download"), we downloaden de "[cuDNN Library for Linux (x86_64)](https://developer.nvidia.com/compute/machine-learning/cudnn/secure/8.0.5/11.0_20201106/cudnn-11.0-linux-x64-v8.0.5.39.tgz)"
 
+   ![image-20210226130742952](/home/rafael/Afstudeerproject/Documentatie/docs_images/model trainen/image-20210226130742952.png)
+
    <sub>Let goed op dat u de juiste cuDNN versie installeert, de versie dat wij gebruiken dat compatibel is met TensorFlow 2.4.0 en Cuda 11.0 is cuDNN 8.0.5. Deze is te vinden in de Archive.</sub>
 
-![image-20210226130742952](/home/rafael/.config/Typora/typora-user-images/image-20210226130742952.png)
+   
 
 2.  Als de download gedaan is open je een Terminal in de directory waar de tgz file staat
 
@@ -66,7 +68,7 @@ Om Cuda te installeren kan je heel wat verschillende methodes gebruiken. Volgend
 
 Als alle goed is verlopen zou u nu Cuda en cuDNN correct geinstalleerd hebben. Om u installatie te controleren kunt u altijd de Cuda Toolkit samples gebruiken. 
 
-### TensorFlow Installeren
+##### TensorFlow Installeren
 
 Voer het volgende command uit in een Terminal venster:
 
