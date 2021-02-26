@@ -1,4 +1,4 @@
-# Gebruikers Handleiding
+# Gebruikershandleiding
 
 ### Opstarten van het systeem
 
