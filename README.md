@@ -1,32 +1,17 @@
-# ADMINISTRATIE
+# Afstudeerproject
 
+De opzet van dit project is dat we gaan proberen te achterhalen of personen effectief hun handen ontsmetten als ze langs een dispenser lopen. Dit gebruik makende van camerabeelden waarop we detecteren of er mensen zijn, en of ze ontsmetten.
 
-- User story map met 3 iteratieve niveaus
-- Testing user stories
-- Kanban bord
-- Scope document (BIJ START)
-- Vision document (BIJ START)
-- 3 Feedbackmomenten + bezorgen aan klant en projectbegeleider
-    - Verslag maken per feedbackmoment
-    - Aanpassen user story map na feedbackmoment
-    - Aanpassen user story cards na feedbackmoment
-- Logboek per dag
+# Quick links
 
-- Wekelijkse snapshot 
-    - User story map 
-    - Domain model
+- [Documentatie](https://github.com/lucacelea/Afstudeerproject/tree/main/Documentatie)
+- [Scope en vision](https://github.com/lucacelea/Afstudeerproject/blob/main/Documentatie/scope-vision.md)
+- [Installatiehandleiding](https://github.com/lucacelea/Afstudeerproject/blob/main/Documentatie/installatie.md)
+- [Gebruikershandleiding]()
 
+# Teamleden
 
-## DOCUMENTATIE (5%)
-- Installatiehandleiding
-- Gebruikershandleiding
-
-
-
-## SCRIPTIEVERSLAG (10%)
-- Hoe het systeem tot stand is gekomen
-    - Werkverdeling
-    - Problemen en oplossingen
-    - Bronnen
-    - Beschrijving van gebruikte technologie
-    - Indien van toepassing een domain class diagram ( UML)
+- Luca Celea
+- Jef Quidousse
+- Brent Thuys
+- Rafael Polfliet
