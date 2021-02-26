@@ -17,6 +17,10 @@ Eenmaal de Jetson opgestart is kunnen de dependencies voor het project installer
 Install nodige packages
 
 ```bash
+sudo apt update
+```
+
+```bash
 sudo apt-get install libatlas-base-dev libblas3 liblapack3 liblapack-dev libblas-dev gfortran
 ```
 
@@ -33,6 +37,11 @@ Installeer pip3 en upgrade.
 ```bash
 sudo apt install python3-pip
 sudo python3 -m pip install --upgrade pip
+```
+
+Installeer cython
+```bash
+sudo apt install cython3
 ```
 
 Installeer de dependencies vanuit het requirements bestand.
