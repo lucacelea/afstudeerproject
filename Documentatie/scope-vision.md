@@ -2,11 +2,11 @@
 ## Business Requirements
 ### Background
 
-`To prevent the spread of corona, there’s been an increasing need in social distancing and disinfecting. There are rules set in place by the government but they are sometimes forgotten by the public. Especially disinfecting when entering stores or buildings. When you are preoccupied with daily life, it can be hard to remember.`
+To prevent the spread of corona, there’s been an increasing need in social distancing and disinfecting. There are rules set in place by the government but they are sometimes forgotten by the public. Especially disinfecting when entering stores or buildings. When you are preoccupied with daily life, it can be hard to remember.
 
 ### Business Opportunity
 
-`UZ Leuven have requested a system which could detect how many people entering their building actually disinfect their hands. With this data they could have more insight into the behaviours of people. With this data they will know if they have to redirect more effort (or not) into making the disinfecting of hands more likely. Such as making it more visible or other suitable options.`
+UZ Leuven have requested a system which could detect how many people entering their building actually disinfect their hands. With this data they could have more insight into the behaviours of people. With this data they will know if they have to redirect more effort (or not) into making the disinfecting of hands more likely. Such as making it more visible or other suitable options.
 
 ###	Business Improvement Objectives
 
@@ -21,7 +21,7 @@
 
 ### Vision Statement
 
-`For the team responsible for corona measures it will be possible to use the DDS to obtain data regarding the use of disinfection stations. The DDS can detect people in frame and if they are likely to be disinfecting their hands. This data can be used to gauge if the disinfection stations are actually being used or not and can be used to increase the efficacy of the disinfection stations.`
+For the team responsible for corona measures it will be possible to use the DDS to obtain data regarding the use of disinfection stations. The DDS can detect people in frame and if they are likely to be disinfecting their hands. This data can be used to gauge if the disinfection stations are actually being used or not and can be used to increase the efficacy of the disinfection stations.
 
 ### Business Risks
 - RI-1:	The GDPR law is not followed correctly. (Probability = 0.1; Impact 10)
