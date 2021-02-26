@@ -14,7 +14,7 @@ Om ons eigen model te trainen zullen we gebruik maken van Tensorflow 2 en hun bi
 
 ###### Cuda installeren
 
-[Nvidia Cuda install Documentatie](https://docs.nvidia.com/cuda/cuda-installation-guide-linux/index.htm l "Nvidia Documentatie")
+[Nvidia Cuda install Documentatie](https://docs.nvidia.com/cuda/cuda-installation-guide-linux/index.html "Nvidia Documentatie")
 
 Om Cuda te installeren kan je heel wat verschillende methodes gebruiken. Volgende methode gaf voor ons de meest succesvolle resultaten.
 
@@ -42,7 +42,7 @@ Om Cuda te installeren kan je heel wat verschillende methodes gebruiken. Volgend
 
    [cuDNN Download](https://developer.nvidia.com/rdp/cudnn-download "cuDNN Download"), we downloaden de "[cuDNN Library for Linux (x86_64)](https://developer.nvidia.com/compute/machine-learning/cudnn/secure/8.0.5/11.0_20201106/cudnn-11.0-linux-x64-v8.0.5.39.tgz)"
 
-   ![image-20210226130742952](/home/rafael/Afstudeerproject/Documentatie/docs_images/model trainen/image-20210226130742952.png)
+   ![image-20210226130742952](docs_images/model trainen/image-20210226130742952.png)
 
    <sub>Let goed op dat u de juiste cuDNN versie installeert, de versie dat wij gebruiken dat compatibel is met TensorFlow 2.4.0 en Cuda 11.0 is cuDNN 8.0.5. Deze is te vinden in de Archive.</sub>
 
