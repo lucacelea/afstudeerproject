@@ -26,7 +26,7 @@ import data
 
 # construct the argument parse and parse the arguments
 ap = argparse.ArgumentParser()
-ap.add_argument("-m", "--model", default=False,action='store_true',
+ap.add_argument("-m", "--model", default=False, action='store_true',
 	help="Use alternative model")
 ap.add_argument("-i", "--input", type=str,
 	help="path to optional input video file")
