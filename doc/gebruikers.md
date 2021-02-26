@@ -2,7 +2,7 @@
 
 ## Opstarten van het systeem
 
-Wanneer de dependencies geïnstalleerd zijn en de camera juist opgehangen is ([zie installatiehandleiding](https://github.com/lucacelea/Afstudeerproject/blob/main/doc/installatie.md)), kan het project opgestart worden.
+Wanneer de dependencies geïnstalleerd zijn en de camera juist opgehangen is ([zie installatiehandleiding](https://github.com/lucacelea/afstudeerproject/blob/main/doc/installatie.md)), kan het project opgestart worden.
 
 Om het project op te starten moet volgende commando in de juiste directory gerunned worden.
 
