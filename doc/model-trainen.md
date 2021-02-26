@@ -29,7 +29,7 @@ Volg deze install. Installeer alles buiten de optie om een nieuwe Nvidia driver 
 
 Voor de installatie van cuDNN [is er ook documentatie van Nvidia](https://docs.nvidia.com/deeplearning/cudnn/install-guide/index.html "Nvidia cuDNN install Documentatie]"). Download de [cuDNN Library](https://developer.nvidia.com/compute/machine-learning/cudnn/secure/8.0.5/11.0_20201106/cudnn-11.0-linux-x64-v8.0.5.39.tgz) uit de archive.
 
-![image-20210226130742952](https://github.com/lucacelea/Afstudeerproject/blob/main/doc/docs_images/model%20trainen/image-20210226130742952.png)
+![image-20210226130742952](https://github.com/lucacelea/afstudeerproject/blob/main/doc/docs_images/model%20trainen/image-20210226130742952.png)
 
 <sub>Let op de versie van cuDNN is belangrijk. De versie dat wij gebruiken is compatibel is met TensorFlow 2.4.0 en Cuda 11.0. (cuDNN 8.0.5)</sub>
 
