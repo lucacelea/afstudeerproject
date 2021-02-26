@@ -14,16 +14,6 @@ Om het project op te zetten, maken we gebruik van een Jetpack image (deze is geb
 
 Eenmaal de Jetson opgestart is kunnen de dependencies voor het project installeren. Hiervoor maken we gebruik van een requirements tekst bestand.
 
-Install nodige packages
-
-```bash
-sudo apt update
-```
-
-```bash
-sudo apt-get install libatlas-base-dev libblas3 liblapack3 liblapack-dev libblas-dev gfortran
-```
-
 Clone de repository van [ons project op GitHub](https://github.com/lucacelea/Afstudeerproject/).
 
 ```bash
@@ -32,23 +22,15 @@ git clone https://github.com/lucacelea/Afstudeerproject/
 cd Afstudeerproject/dds
 ```
 
-Installeer pip3 en upgrade.
+Install nodige packages en upgrade pip.
 
 ```bash
-sudo apt install python3-pip
+sudo apt update
+
+sudo apt install libatlas-base-dev libblas3 liblapack3 liblapack-dev libblas-dev gfortran cython3 python3-tk python3-pip
+
 sudo python3 -m pip install --upgrade pip
 ```
-
-Installeer cython
-```bash
-sudo apt install cython3
-```
-
-Installeer tkinter
-```bash
-sudo apt install python3-tk
-```
-
 
 Installeer de dependencies vanuit het requirements bestand.
 
