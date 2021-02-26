@@ -14,7 +14,7 @@ Om ons eigen model te trainen zullen we gebruik maken van Tensorflow 2 en hun bi
 
 #### Cuda installeren
 
-[Nvidia Cuda install Documentatie](https://docs.nvidia.com/cuda/cuda-installation-guide-linux/index.htm l "Nvidia Documentatie")
+[Nvidia Cuda install Documentatie](https://docs.nvidia.com/cuda/cuda-installation-guide-linux/index.html "Nvidia Documentatie")
 
 Om Cuda te installeren kan je heel wat verschillende methodes gebruiken. Volgende methode gaf voor ons de meest succesvolle resultaten.
 
