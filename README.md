@@ -7,7 +7,7 @@ De opzet van dit project is dat we gaan proberen te achterhalen of personen effe
 - [Documentatie](https://github.com/lucacelea/Afstudeerproject/tree/main/Documentatie)
 - [Scope en vision](https://github.com/lucacelea/Afstudeerproject/blob/main/Documentatie/scope-vision.md)
 - [Installatiehandleiding](https://github.com/lucacelea/Afstudeerproject/blob/main/Documentatie/installatie.md)
-- [Gebruikershandleiding]()
+- [Gebruikershandleiding](https://github.com/lucacelea/Afstudeerproject/blob/main/Documentatie/gebruikers.md)
 
 # Teamleden
 
