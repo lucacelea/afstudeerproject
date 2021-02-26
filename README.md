@@ -4,10 +4,10 @@ De opzet van dit project is dat we gaan proberen te achterhalen of personen effe
 
 # Quick links
 
-- [Documentatie](https://github.com/lucacelea/Afstudeerproject/tree/main/doc)
-- [Scope en vision](https://github.com/lucacelea/Afstudeerproject/blob/main/doc/scope-vision.md)
-- [Installatiehandleiding](https://github.com/lucacelea/Afstudeerproject/blob/main/doc/installatie.md)
-- [Gebruikershandleiding](https://github.com/lucacelea/Afstudeerproject/blob/main/doc/gebruikers.md)
+- [Documentatie](https://github.com/lucacelea/afstudeerproject/tree/main/doc)
+- [Scope en vision](https://github.com/lucacelea/afstudeerproject/blob/main/doc/scope-vision.md)
+- [Installatiehandleiding](https://github.com/lucacelea/afstudeerproject/blob/main/doc/installatie.md)
+- [Gebruikershandleiding](https://github.com/lucacelea/afstudeerproject/blob/main/doc/gebruikers.md)
 
 # Teamleden
 
