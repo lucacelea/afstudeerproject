@@ -18,7 +18,7 @@ Om ons eigen model te trainen zullen we gebruik maken van Tensorflow 2 en hun bi
     - [COCO API installatie](#coco-api-installatie)
     - [Installeer de Object Detection API](#installeer-de-object-detection-api)
   - [Training Custom Object Detector](#training-custom-object-detector)
-    - [De <em>Workspace</em> voorbereiden](#de-emworkspaceem-voorbereiden)
+    - [De <em>Workspace</em> voorbereiden](#de-workspace-voorbereiden)
     - [De Dataset voorbereiden](#de-dataset-voorbereiden)
       - [De Dataset annoteren](#de-dataset-annoteren)
       - [De Dataset partitioneren](#de-dataset-partitioneren)
@@ -188,7 +188,7 @@ make
 cp -r pycocotools <PATH_TO_TF>/TensorFlow/models/research/
 ```
 
-###Installeer de Object Detection API
+## Installeer de Object Detection API
 
 De installatie van de Object Detection API wordt behaald door het installeren van de <code>object_detection</code> package. Dit wordt gedaan door volgende commando's uit te voeren vanuit de <code>Tensorflow/models/research</code> folder:
 
