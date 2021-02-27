@@ -6,9 +6,9 @@ Om ons eigen model te trainen zullen we gebruik maken van Tensorflow 2 en hun bi
 
 [TOC]
 
-## Cuda & CUDnn installeren
+## Cuda & cuDNN 
 
-<u>Bij het installeren van Cuda is het zeer belangrijk om na te dat de versies van TensorFlow, Cuda en CUDnn compatibel zijn. Moest u zelf een andere versie willen installeren controleer dan zeker [*de lijst van TensorFlow zelf.*](https://www.tensorflow.org/install/source#gpu "Tensorflow Compatibility List")</u>
+Bij het installeren van Cuda is het zeer belangrijk om na te dat de versies van TensorFlow, Cuda en CUDnn compatibel zijn. Moest u zelf een andere versie willen installeren controleer dan zeker [*de lijst van TensorFlow zelf.*](https://www.tensorflow.org/install/source#gpu "Tensorflow Compatibility List")
 
 ### Cuda installeren
 
@@ -67,13 +67,7 @@ Volgend commando kan gebruikt worden om te testen of de installatie succesvol wa
 python3 -c 'import tensorflow as tf; print(tf.__version__)'
 ```
 
-Als dat commando succesvol was, kan nagegaan worden of de installatie samen werkt met Tensorflow. Dit door volgend commando te gebruiken.
-
-```bash
-python3 -c "import tensorflow as tf;print(tf.reduce_sum(tf.random.normal([1000, 1000])))"
-```
-
-Als dit succesvol was kunt u ook nagaan of Tensorflow werkt met de Cuda installatie dat we daarnet hebben gedaan
+Als dat commando succesvol was, kan nagegaan worden of de Cuda installatie van daarnet samenwerkt met TensorFlow. Dit door volgend commando te gebruiken.
 
 ```bash
 python3 -c "import tensorflow as tf;print(tf.reduce_sum(tf.random.normal([1000, 1000])))"
@@ -81,10 +75,10 @@ python3 -c "import tensorflow as tf;print(tf.reduce_sum(tf.random.normal([1000, 
 
 Dit commando zou ouptut moeten genereren gelijkaardig aan het volgende
 
-
 <details>
-  <summary>Uitvouwen!</summary>
-  
+  <summary>Uitvouwen</summary>
+
+
 ```
 2020-06-22 20:24:31.355541: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library cudart64_101.dll
 2020-06-22 20:24:33.650692: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library nvcuda.dll
@@ -124,5 +118,200 @@ tf.Tensor(122.478485, shape=(), dtype=float32)
 
 </details>
 
+Controleer zeker dat er nergens in de output meldingen zijn van errors en dat de beschikbare GPU wel degelijk getoond wordt.
+
+## TensorFlow Object Detection API
+
+
+### TensorFlow Model Garden downloaden
+
+Maak ergens een nieuwe map genaamd TensorFlow aan. (e.g. /home/uw_gebruiker/TensorFlow).
+
+Open vervolgens in deze nieuwe map een terminal en clone de [TensorFlow Models repository](https://github.com/tensorflow/models "Tensorflow Models repository")
+
+Dit zou moeten resulteren in volgende folder structuur.
+
+```
+TensorFlow/
+└─ models/
+   ├─ community/
+   ├─ official/
+   ├─ orbit/
+   ├─ research/
+   └── ...
+```
+
+### Protobuf Installatie/ Compilatie
+
+De Tensorflow Object Detection API gebruikt Protobuf om model- en trainingsparameters te configureren. Voordat het framework kan worden gebruikt, moeten de Protobuf libraries worden gedownload en gecompileerd.
+
+To-Do weet dit niet meer vanbuiten en was dacht ik anders dan wat er in de documentatie stond
+
+### COCO API installatie
+
+Vanaf TensorFlow 2.x, wordt de <em>pycocotools</em> package opgelijst als een dependency van de Object Detectie API. Idealiter zou dit pakket geïnstalleerd moeten worden wanneer de Object Detection API geïnstalleerd wordt, zoals gedocumenteerd in de installatie van de Object Detection API in de sectie hieronder, maar de installatie kan om verschillende redenen mislukken en daarom is het eenvoudiger om het pakket gewoon vooraf te installeren, in welk geval de latere installatie overgeslagen zal worden.
+
+
+Clone de [cocoapi repository](https://github.com/cocodataset/cocoapi "cocoapi repository") en dan <code>make</code> en kopieer de pycocotools subfolder naar de <code>Tensorflow/models/research</code> map als volgt.
+
+
+```bash
+git clone https://github.com/cocodataset/cocoapi.git
+cd cocoapi/PythonAPI
+make
+cp -r pycocotools <PATH_TO_TF>/TensorFlow/models/research/
+```
+
+###Installeer de Object Detection API
+
+De installatie van de Object Detection API wordt behaald door het installeren van de <code>object_detection</code> package. Dit wordt gedaan door volgende commando's uit te voeren vanuit de <code>Tensorflow/models/research</code> folder:
+
+```bash
+cp object_detection/packages/tf2/setup.py .
+python3 -m pip install .
+```
+
+Als alles goed is verlopen en je krijgt geen errors kan nu de installatie worden getest door het volgende commando uit te voeren vanuit de <code>Tensorflow/models/research</code> map:
+
+```bash
+python3 object_detection/builders/model_builder_tf2_test.py
+```
+
+Als dit resulteert in volgende output dan is alles goed verlopen.
+
+```
+...
+[       OK ] ModelBuilderTF2Test.test_create_ssd_models_from_config
+[ RUN      ] ModelBuilderTF2Test.test_invalid_faster_rcnn_batchnorm_update
+[       OK ] ModelBuilderTF2Test.test_invalid_faster_rcnn_batchnorm_update
+[ RUN      ] ModelBuilderTF2Test.test_invalid_first_stage_nms_iou_threshold
+[       OK ] ModelBuilderTF2Test.test_invalid_first_stage_nms_iou_threshold
+[ RUN      ] ModelBuilderTF2Test.test_invalid_model_config_proto
+[       OK ] ModelBuilderTF2Test.test_invalid_model_config_proto
+[ RUN      ] ModelBuilderTF2Test.test_invalid_second_stage_batch_size
+[       OK ] ModelBuilderTF2Test.test_invalid_second_stage_batch_size
+[ RUN      ] ModelBuilderTF2Test.test_session
+[  SKIPPED ] ModelBuilderTF2Test.test_session
+[ RUN      ] ModelBuilderTF2Test.test_unknown_faster_rcnn_feature_extractor
+[       OK ] ModelBuilderTF2Test.test_unknown_faster_rcnn_feature_extractor
+[ RUN      ] ModelBuilderTF2Test.test_unknown_meta_architecture
+[       OK ] ModelBuilderTF2Test.test_unknown_meta_architecture
+[ RUN      ] ModelBuilderTF2Test.test_unknown_ssd_feature_extractor
+[       OK ] ModelBuilderTF2Test.test_unknown_ssd_feature_extractor
+----------------------------------------------------------------------
+Ran 20 tests in 68.510s
+
+OK (skipped=1)
+```
+
+
+
+## Training Custom Object Detector
+
+
+### De <em>Workspace</em> voorbereiden
+
+Als alles goed verlopen is zou nu onder de <code>Tensorflow</code> map volgende structuur terug te vinden zijn.
+
+```
+TensorFlow/
+├─ addons/ (Optional)
+│  └─ labelImg/
+└─ models/
+   ├─ community/
+   ├─ official/
+   ├─ orbit/
+   ├─ research/
+   └─ ...
+```
+
+Om alles gestructureerd op te zetten zullen we in deze map nog wat extra mappen aanmaken.
+Maak onder de <code>Tensorflow</code> een map genaamd <code>workspace</code>.
+Maak in deze nieuwe map vervolgens ook een folder genaamd <code>training_demo</code>.
+Dit zou moeten resulteren in volgende structuur.
+
+```
+TensorFlow/
+├─ addons/ (Optional)
+├─ models/
+│  ├─ community/
+│  ├─ official/
+│  ├─ orbit/
+│  ├─ research/
+│  └─ ...
+└─ workspace/
+   └─ training_demo/
+```
+
+De training_demo map is onze trainingsmap, die alle bestanden zal bevatten die te maken hebben met de training van ons model. Het is aangeraden om een aparte trainingsmap aan te maken telkens als we op een andere dataset willen trainen. De typische structuur voor trainingsmappen is hieronder weergegeven.
+
+```
+training_demo/
+├─ annotations/
+├─ exported-models/
+├─ images/
+│  ├─ test/
+│  └─ train/
+├─ models/
+├─ pre-trained-models/
+```
+Deze mappen kunnen nu al aangemaakt worden. Het doel van elke map zal wel snel duidelijk worden
+
+### De Dataset voorbereiden
+
+#### De Dataset annoteren
+
+Om de dataset te anntoren zullen we gebruiken maken van de <code>labelImg</code>.
+
+Installeer simpelweg met <code>PIP</code> de package.
+
+```bash
+pip3 install labelImg
+```
+
+Hierna kan <code>labelImg</code> opgestart worden door het volgende in de terminal uit te voeren:
+
+```bash
+labelImg
+```
+
+Verzamel foto's waarmee het model getrained zal worden, 100 of meer wordt aangeraden. Plaats deze in de <code>training_demo/images</code>. Deze foto's zullen we annoteren zodat het model hierop kan trainen.
+
+
+In <code>labelImg</code> kan u nu deze folder openen en zou u rechtsonder alle foto's moeten opgelijst worden.
+
+Nu kan er begonnen worden met annoteren. Probeer steeds zo dicht mogelijk rond het object te selecteren. Bij elke foto moet u deze opslaan als alles geannoteerd is dat u nodig hebt. Dit zal een bijhorende <code>*.xml</code> bestand aanmaken.
+
+![labelImg](https://tensorflow-object-detection-api-tutorial.readthedocs.io/en/latest/_images/labelImg.JPG)
+
+#### De Dataset partitioneren
+
+Vaak wordt na het annoteren van de foto's de data gepartitioneerd. De foto's en bijhorende <code>*.xml</code> bestanden worden opgedeeld in een training-set en test-set. Met de training-set wordt het model getrained, de test-set wordt dan weer gebruikt om te evalueren hoe goed het model.
+
+Een aangeraden verdeling is 90% training en 10% test.
+
+Plaats na te partitioneren de foto's (en hun bijhorende <code>*.xml</code> betanden) in bijhorende subfolder:
+<code>training_demo/images/train</code>
+<code>training_demo/images/test</code>
+
+#### De Label Map aanmaken
+
+TensorFlow heeft een label map nodig, die namelijk elk van de gebruikte labels in een integer waarde omzet. Deze label map wordt zowel door het training- als het detectieproces gebruikt.
+
+Volgende Label Map hebben wij gebruikt.
+
+```json
+item {
+    id: 1
+    name: 'person'
+}
+
+item {
+    id: 2
+    name: 'dispenser'
+}
+```
+
+Label map bestanden hebben gewoonlijk de extensie <code>.pbtxt</code> en horen in de <code>training_demo/annotations</code> map.
 
 
