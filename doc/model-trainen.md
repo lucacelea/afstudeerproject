@@ -294,7 +294,7 @@ Plaats na te partitioneren de foto's (en hun bijhorende <code>*.xml</code> betan
 <code>training_demo/images/train</code>
 <code>training_demo/images/test</code>
 
-#### De Label Map aanmaken
+### De Label Map aanmaken
 
 TensorFlow heeft een label map nodig, die namelijk elk van de gebruikte labels in een integer waarde omzet. Deze label map wordt zowel door het training- als het detectieproces gebruikt.
 
@@ -315,11 +315,11 @@ item {
 Label map bestanden hebben gewoonlijk de extensie <code>.pbtxt</code> en horen in de <code>training_demo/annotations</code> map.
 
 
-#### TensorFlow records aanmaken
+### TensorFlow records aanmaken
 
 Nu onze annotaties zijn gegenereerd en onze dataset zijn opgesplitst in de gewenste training en testing subsets, is het tijd om onze annotaties om te zetten in het zogenaamde <code>TFRecord</code> formaat.
 
-##### <code>*.xml</code> omzetten naar <code>*.record</code>
+#### <code>*.xml</code> omzetten naar <code>*.record</code>
 
 Om dit te doen kan een scriptje gebruikt wordt dat itereert over alle <code>*.xml</code> bestanden in de <code>training_demo/images/train</code> en <code>training_demo/images/test</code> mappen en bijhorende <code>*.record</code> bestanden aanmaakt. Gelukkig heeft iemand dit al voor ons gedaan. [Dit scriptje is hier te downloaden.](https://tensorflow-object-detection-api-tutorial.readthedocs.io/en/latest/_downloads/da4babe668a8afb093cc7776d7e630f3/generate_tfrecord.py "Scriptje om *.xml om te zetten naar de *.record bestanden")
 Plaats dit scriptje in de <code>Tensorflow/scripts/preprocessing</code> map.
@@ -342,13 +342,13 @@ python3 generate_tfrecord.py -x [PAD_NAAR_IMAGES_MAP]/test -l [PAD_NAAR_ANNOTATI
 Het uitvoeren van dit zou moeten resulteren in 2 new bestanden onder de <code>training_demo/annotations</code> map, genaamd <code>test.record</code> en <code>training.record</code>.
 
 
-#### Training taak aanmaken
+### Training taak aanmaken
 
 Wij zullen geen taining taak aanmaken vanaf nul maar opteren eerder om een bestaand model te gebruiken. Moest u dit toch willen doen kunt u [de documentatie van Tensorflow lezen.](https://github.com/tensorflow/models/blob/master/research/object_detection/g3doc/configuring_jobs.md)
 
 Het model dat we in onze voorbeelden zullen gebruiken is het [SSD ResNet50 V1 FPN 640x640](http://download.tensorflow.org/models/object_detection/tf2/20200711/ssd_resnet50_v1_fpn_640x640_coco17_tpu-8.tar.gz) model, omdat het een relatief goede afweging biedt tussen prestaties en snelheid. Er bestaan echter een aantal andere modellen die je kunt gebruiken, die allemaal opgesomd staan in [TensorFlow 2 Detection Model Zoo](https://github.com/tensorflow/models/blob/master/research/object_detection/g3doc/tf2_detection_zoo.md).
 
-##### Download Pre-Trained Model
+#### Download Pre-Trained Model
 
 Om te beginnen download een model uit de lijst vermeld hierboven.
 
@@ -580,4 +580,100 @@ eval_input_reader {
 </details>
 
 <sub>Controleer zeker al paden dat meegegeven moeten worden, soms is een absoluut pad veiliger en vermijdt dit fouten.</sub>
+
+### Het model trainen
+
+Voordat we beginnen met het trainen van ons model, kopiëren we het <code>TensorFlow/models/research/object_detection/model_main_tf2.py</code> script en plakken het rechtstreeks in onze <code>training_demo map</code>. We zullen dit script nodig hebben om ons model te trainen.
+
+
+Om het trainen te starten voer je dit script uit:
+
+```bash
+python3 model_main_tf2.py --model_dir=models/my_ssd_resnet50_v1_fpn --pipeline_config_path=models/my_ssd_resnet50_v1_fpn/pipeline.config
+```
+
+Als alles goed verloopt zou gelijkaardig output moeten verschijnen eenmaal het trainen is begonnen.
+
+```
+...
+WARNING:tensorflow:Unresolved object in checkpoint: (root).model._box_predictor._base_tower_layers_for_heads.class_predictions_with_background.4.10.gamma
+W0716 05:24:19.105542  1364 util.py:143] Unresolved object in checkpoint: (root).model._box_predictor._base_tower_layers_for_heads.class_predictions_with_background.4.10.gamma
+WARNING:tensorflow:Unresolved object in checkpoint: (root).model._box_predictor._base_tower_layers_for_heads.class_predictions_with_background.4.10.beta
+W0716 05:24:19.106541  1364 util.py:143] Unresolved object in checkpoint: (root).model._box_predictor._base_tower_layers_for_heads.class_predictions_with_background.4.10.beta
+WARNING:tensorflow:Unresolved object in checkpoint: (root).model._box_predictor._base_tower_layers_for_heads.class_predictions_with_background.4.10.moving_mean
+W0716 05:24:19.107540  1364 util.py:143] Unresolved object in checkpoint: (root).model._box_predictor._base_tower_layers_for_heads.class_predictions_with_background.4.10.moving_mean
+WARNING:tensorflow:Unresolved object in checkpoint: (root).model._box_predictor._base_tower_layers_for_heads.class_predictions_with_background.4.10.moving_variance
+W0716 05:24:19.108539  1364 util.py:143] Unresolved object in checkpoint: (root).model._box_predictor._base_tower_layers_for_heads.class_predictions_with_background.4.10.moving_variance
+WARNING:tensorflow:A checkpoint was restored (e.g. tf.train.Checkpoint.restore or tf.keras.Model.load_weights) but not all checkpointed values were used. See above for specific issues. Use expect_partial() on the load status object, e.g. tf.train.Checkpoint.restore(...).expect_partial(), to silence these warnings, or use assert_consumed() to make the check explicit. See https://www.tensorflow.org/guide/checkpoint#loading_mechanics for details.
+W0716 05:24:19.108539  1364 util.py:151] A checkpoint was restored (e.g. tf.train.Checkpoint.restore or tf.keras.Model.load_weights) but not all checkpointed values were used. See above for specific issues. Use expect_partial() on the load status object, e.g. tf.train.Checkpoint.restore(...).expect_partial(), to silence these warnings, or use assert_consumed() to make the check explicit. See https://www.tensorflow.org/guide/checkpoint#loading_mechanics for details.
+WARNING:tensorflow:num_readers has been reduced to 1 to match input file shards.
+INFO:tensorflow:Step 100 per-step time 1.153s loss=0.761
+I0716 05:26:55.879558  1364 model_lib_v2.py:632] Step 100 per-step time 1.153s loss=0.761
+...
+```
+
+Ter controle dat de GPU wel degelijk wordt gebruikt om te trainen kan in een andere terminal volgend commando uitgevoerd worden. Met dit is het mogelijk te controleren hoeveel resources worden gebruikt. Dit kan ook handig zijn als u de <code>batch_size</code> wilt aanpassen.
+
+```bash
+watch nvidia-smi
+```
+Nu zal het even wachten zijn voordat het model volledig getrained is.
+
+Volgends van wat mensen online hebben gezegd, lijkt het erop dat het raadzaam is uw model een TotalLoss van minstens 2 (idealiter 1 en lager) te laten bereiken als u "eerlijke" detectieresultaten wilt bereiken. Uiteraard is een lager TotalLoss beter, maar een zeer laag TotalLoss moet worden vermeden, omdat het model uiteindelijk de dataset kan overfitten, wat betekent dat het slecht zal presteren wanneer het wordt toegepast op afbeeldingen buiten de dataset.
+
+Om het trainen overzichterlijk te monitoren kunt gebruik gemaakt worden van [TensorBoard](https://www.tensorflow.org/tensorboard "TensorBoard")
+
+Open een terminal in <code>training_demo</code> en voer volgend commando uit:
+
+```bash
+tensorboard --logdir=models/my_ssd_resnet50_v1_fpn
+```
+
+Het bovenstaande commando zal een nieuwe TensorBoard server starten, die (standaard) luistert naar poort 6006 van uw machine. Ervan uitgaande dat alles goed is gegaan, zou u een output moeten zien zoals hieronder (plus/minus enkele waarschuwingen):
+```
+...
+TensorBoard 2.2.2 at http://localhost:6006/ (Press CTRL+C to quit)
+```
+
+Zodra dit is gebeurd, gaat u naar uw browser en typt u http://localhost:6006/ in de adresbalk, waarna u een dashboard te zien zou moeten krijgen dat lijkt op het hieronder getoonde (misschien minder bevolkt als uw model nog maar net met trainen is begonnen):
+
+![TensorBoard Dashboard](https://tensorflow-object-detection-api-tutorial.readthedocs.io/en/latest/_images/TensorBoard.JPG)
+
+
+### Getrained model extraheren
+
+Eenmaal u tevreden bent met hoe uw model getrained is kunt u deze exporteren. Nu zullen we de nieuw getrainde <em>inference graph</em> extraheren. Dit doet men als volgt.
+
+Kopieer het <code>TensorFlow/models/research/object_detection/exporter_main_v2.py</code> script en plak het rechtstreeks in je <code>training_demo</code> map.
+Open nu een terminal in deze map en voer het volgende commando uit.
+
+```bash
+python3 .\exporter_main_v2.py --input_type image_tensor --pipeline_config_path .\models\my_efficientdet_d1\pipeline.config --trained_checkpoint_dir .\models\my_efficientdet_d1\ --output_directory .\exported-models\my_model
+```
+
+Na dit process voltooid is zou uw model klaar moeten zijn voor gebruik, deze zou u moeten terugvinden in de map <code>training_demo/exported-models</code>.
+
+```
+training_demo/
+├─ ...
+├─ exported-models/
+│  └─ my_model/
+│     ├─ checkpoint/
+│     ├─ saved_model/
+│     └─ pipeline.config
+└─ ...
+```
+
+Met dit model kunt u nu inferentie doen.
+
+
+___
+
+#Bronnen
+* [Nvidia cuDNN Documentation](https://docs.nvidia.com/deeplearning/cudnn/install-guide/index.html "Nvidia cuDNN Documentation")
+* [Cuda Toolkit Documentation](https://docs.nvidia.com/cuda/cuda-installation-guide-linux/index.html "Cuda Toolkit Documentation")
+* [TensorFlow 2 Object Detection API tutorial Installation](https://tensorflow-object-detection-api-tutorial.readthedocs.io/en/latest/install.html "TensorFlow 2 Object Detection API tutorial Installation")
+* [TensorFlow 2 Object Detection API tutorial Training Custom Object Detector](https://tensorflow-object-detection-api-tutorial.readthedocs.io/en/latest/training.html "TensorFlow 2 Object Detection API tutorial Training Custom Object Detector")
+
+
 
