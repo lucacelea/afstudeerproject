@@ -4,7 +4,32 @@
 
 Om ons eigen model te trainen zullen we gebruik maken van Tensorflow 2 en hun bijhorende TensorFlow 2 Object Detection API. Omdat trainen veel sneller gaat met het gebruik van een GPU zullen we voor ons project ook Nvidia Cuda gebruiken zodat TensorFlow ten volle gebruik kan maken van de beschikbare GPU. Wij hebben deze install gedaan op Ubuntu 18.04.
 
-[TOC]
+## Inhoudstafel
+
+- [Model trainen](#model-trainen)
+  * [Cuda & cuDNN](#cuda---cudnn)
+    + [Cuda installeren](#cuda-installeren)
+    + [Cudnn installeren](#cudnn-installeren)
+  * [TensorFlow](#tensorflow)
+    + [Installeren](#installeren)
+  * [TensorFlow Object Detection API](#tensorflow-object-detection-api)
+    + [TensorFlow Model Garden downloaden](#tensorflow-model-garden-downloaden)
+    + [Protobuf Installatie/ Compilatie](#protobuf-installatie--compilatie)
+    + [COCO API installatie](#coco-api-installatie)
+  * [Training Custom Object Detector](#training-custom-object-detector)
+    + [De <em>Workspace</em> voorbereiden](#de--em-workspace--em--voorbereiden)
+    + [De Dataset voorbereiden](#de-dataset-voorbereiden)
+      - [De Dataset annoteren](#de-dataset-annoteren)
+      - [De Dataset partitioneren](#de-dataset-partitioneren)
+    + [De Label Map aanmaken](#de-label-map-aanmaken)
+    + [TensorFlow records aanmaken](#tensorflow-records-aanmaken)
+      - [*.xml omzetten naar *.record](#-code--xml--code--omzetten-naar--code--record--code-)
+    + [Training taak aanmaken](#training-taak-aanmaken)
+      - [Download Pre-Trained Model](#download-pre-trained-model)
+      - [De Training Pipeline configureren](#de-training-pipeline-configureren)
+    + [Het model trainen](#het-model-trainen)
+    + [Getrained model extraheren](#getrained-model-extraheren)
+- [Bronnen](#bronnen)
 
 ## Cuda & cuDNN 
 
