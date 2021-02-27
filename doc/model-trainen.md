@@ -4,31 +4,32 @@
 
 Om ons eigen model te trainen zullen we gebruik maken van Tensorflow 2 en hun bijhorende TensorFlow 2 Object Detection API. Omdat trainen veel sneller gaat met het gebruik van een GPU zullen we voor ons project ook Nvidia Cuda gebruiken zodat TensorFlow ten volle gebruik kan maken van de beschikbare GPU. Wij hebben deze install gedaan op Ubuntu 18.04.
 
-## Inhoudstafel
+# Inhoudstafel
 
 - [Model trainen](#model-trainen)
-  * [Cuda & cuDNN](#cuda---cudnn)
-    + [Cuda installeren](#cuda-installeren)
-    + [cuDNN installeren](#cuDNN-installeren)
-  * [TensorFlow](#tensorflow)
-    + [Installeren](#installeren)
-  * [TensorFlow Object Detection API](#tensorflow-object-detection-api)
-    + [TensorFlow Model Garden downloaden](#tensorflow-model-garden-downloaden)
-    + [Protobuf Installatie/ Compilatie](#protobuf-installatie--compilatie)
-    + [COCO API installatie](#coco-api-installatie)
-  * [Training Custom Object Detector](#training-custom-object-detector)
-    + [De <em>Workspace</em> voorbereiden](#de--em-workspace--em--voorbereiden)
-    + [De Dataset voorbereiden](#de-dataset-voorbereiden)
+  - [Cuda & cuDNN](#cuda--cudnn)
+    - [Cuda installeren](#cuda-installeren)
+    - [cuDNN installeren](#cudnn-installeren)
+  - [TensorFlow](#tensorflow)
+    - [Installeren](#installeren)
+  - [TensorFlow Object Detection API](#tensorflow-object-detection-api)
+    - [TensorFlow Model Garden downloaden](#tensorflow-model-garden-downloaden)
+    - [Protobuf Installatie/ Compilatie](#protobuf-installatie-compilatie)
+    - [COCO API installatie](#coco-api-installatie)
+    - [Installeer de Object Detection API](#installeer-de-object-detection-api)
+  - [Training Custom Object Detector](#training-custom-object-detector)
+    - [De <em>Workspace</em> voorbereiden](#de-workspace-voorbereiden)
+    - [De Dataset voorbereiden](#de-dataset-voorbereiden)
       - [De Dataset annoteren](#de-dataset-annoteren)
       - [De Dataset partitioneren](#de-dataset-partitioneren)
-    + [De Label Map aanmaken](#de-label-map-aanmaken)
-    + [TensorFlow records aanmaken](#tensorflow-records-aanmaken)
-      - [*.xml omzetten naar *.record](#-code--xml--code--omzetten-naar--code--record--code-)
-    + [Training taak aanmaken](#training-taak-aanmaken)
+    - [De Label Map aanmaken](#de-label-map-aanmaken)
+    - [TensorFlow records aanmaken](#tensorflow-records-aanmaken)
+      - [*.xml omzetten naar *.record](#xml-omzetten-naar-record)
+    - [Training taak aanmaken](#training-taak-aanmaken)
       - [Download Pre-Trained Model](#download-pre-trained-model)
       - [De Training Pipeline configureren](#de-training-pipeline-configureren)
-    + [Het model trainen](#het-model-trainen)
-    + [Getrained model extraheren](#getrained-model-extraheren)
+    - [Het model trainen](#het-model-trainen)
+    - [Getrained model extraheren](#getrained-model-extraheren)
 - [Bronnen](#bronnen)
 
 ## Cuda & cuDNN 
@@ -187,7 +188,7 @@ make
 cp -r pycocotools <PATH_TO_TF>/TensorFlow/models/research/
 ```
 
-###Installeer de Object Detection API
+## Installeer de Object Detection API
 
 De installatie van de Object Detection API wordt behaald door het installeren van de <code>object_detection</code> package. Dit wordt gedaan door volgende commando's uit te voeren vanuit de <code>Tensorflow/models/research</code> folder:
 
@@ -307,7 +308,7 @@ In <code>labelImg</code> kan u nu deze folder openen en zou u rechtsonder alle f
 
 Nu kan er begonnen worden met annoteren. Probeer steeds zo dicht mogelijk rond het object te selecteren. Bij elke foto moet u deze opslaan als alles geannoteerd is dat u nodig hebt. Dit zal een bijhorende <code>*.xml</code> bestand aanmaken.
 
-![labelImg](https://tensorflow-object-detection-api-tutorial.readthedocs.io/en/latest/_images/labelImg.JPG)
+![labelImg](https://github.com/lucacelea/afstudeerproject/blob/main/doc/docs_images/model%20trainen/labelImg.JPG)
 
 #### De Dataset partitioneren
 
@@ -344,7 +345,7 @@ Label map bestanden hebben gewoonlijk de extensie <code>.pbtxt</code> en horen i
 
 Nu onze annotaties zijn gegenereerd en onze dataset zijn opgesplitst in de gewenste training en testing subsets, is het tijd om onze annotaties om te zetten in het zogenaamde <code>TFRecord</code> formaat.
 
-#### <code>*.xml</code> omzetten naar <code>*.record</code>
+#### <code>\*.xml</code> omzetten naar <code>\*.record</code>
 
 Om dit te doen kan een scriptje gebruikt wordt dat itereert over alle <code>*.xml</code> bestanden in de <code>training_demo/images/train</code> en <code>training_demo/images/test</code> mappen en bijhorende <code>*.record</code> bestanden aanmaakt. Gelukkig heeft iemand dit al voor ons gedaan. [Dit scriptje is hier te downloaden.](https://tensorflow-object-detection-api-tutorial.readthedocs.io/en/latest/_downloads/da4babe668a8afb093cc7776d7e630f3/generate_tfrecord.py "Scriptje om *.xml om te zetten naar de *.record bestanden")
 Plaats dit scriptje in de <code>Tensorflow/scripts/preprocessing</code> map.
@@ -662,7 +663,7 @@ TensorBoard 2.2.2 at http://localhost:6006/ (Press CTRL+C to quit)
 
 Zodra dit is gebeurd, gaat u naar uw browser en typt u http://localhost:6006/ in de adresbalk, waarna u een dashboard te zien zou moeten krijgen dat lijkt op het hieronder getoonde (misschien minder bevolkt als uw model nog maar net met trainen is begonnen):
 
-![TensorBoard Dashboard](https://tensorflow-object-detection-api-tutorial.readthedocs.io/en/latest/_images/TensorBoard.JPG)
+![TensorBoard Dashboard](https://github.com/lucacelea/afstudeerproject/blob/main/doc/docs_images/model%20trainen/TensorBoard.JPG)
 
 
 ### Getrained model extraheren
