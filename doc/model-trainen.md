@@ -9,7 +9,7 @@ Om ons eigen model te trainen zullen we gebruik maken van Tensorflow 2 en hun bi
 - [Model trainen](#model-trainen)
   * [Cuda & cuDNN](#cuda---cudnn)
     + [Cuda installeren](#cuda-installeren)
-    + [Cudnn installeren](#cuDNN-installeren)
+    + [cuDNN installeren](#cuDNN-installeren)
   * [TensorFlow](#tensorflow)
     + [Installeren](#installeren)
   * [TensorFlow Object Detection API](#tensorflow-object-detection-api)
