@@ -52,7 +52,7 @@ sudo sh cuda_11.0.2_450.51.05_linux.run
 
 Volg deze install. Installeer alles buiten de optie om een nieuwe Nvidia driver te installeren. Deze optie kan voor problemen zorgen. Na de installatie is er een bevestiging dat alles vlot verlopen is.
 
-### Cudnn installeren
+### cuDNN installeren
 
 Voor de installatie van cuDNN [is er ook documentatie van Nvidia](https://docs.nvidia.com/deeplearning/cudnn/install-guide/index.html "Nvidia cuDNN install Documentatie]"). Download de [cuDNN Library](https://developer.nvidia.com/compute/machine-learning/cudnn/secure/8.0.5/11.0_20201106/cudnn-11.0-linux-x64-v8.0.5.39.tgz) uit de archive.
 
