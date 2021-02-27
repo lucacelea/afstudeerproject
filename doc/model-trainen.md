@@ -300,7 +300,7 @@ TensorFlow heeft een label map nodig, die namelijk elk van de gebruikte labels i
 
 Volgende Label Map hebben wij gebruikt.
 
-```json
+```
 item {
     id: 1
     name: 'person'
@@ -314,4 +314,270 @@ item {
 
 Label map bestanden hebben gewoonlijk de extensie <code>.pbtxt</code> en horen in de <code>training_demo/annotations</code> map.
 
+
+#### TensorFlow records aanmaken
+
+Nu onze annotaties zijn gegenereerd en onze dataset zijn opgesplitst in de gewenste training en testing subsets, is het tijd om onze annotaties om te zetten in het zogenaamde <code>TFRecord</code> formaat.
+
+##### <code>*.xml</code> omzetten naar <code>*.record</code>
+
+Om dit te doen kan een scriptje gebruikt wordt dat itereert over alle <code>*.xml</code> bestanden in de <code>training_demo/images/train</code> en <code>training_demo/images/test</code> mappen en bijhorende <code>*.record</code> bestanden aanmaakt. Gelukkig heeft iemand dit al voor ons gedaan. [Dit scriptje is hier te downloaden.](https://tensorflow-object-detection-api-tutorial.readthedocs.io/en/latest/_downloads/da4babe668a8afb093cc7776d7e630f3/generate_tfrecord.py "Scriptje om *.xml om te zetten naar de *.record bestanden")
+Plaats dit scriptje in de <code>Tensorflow/scripts/preprocessing</code> map.
+
+Dit scriptje heeft <code>pandas</code> als dependency dus die moet geinstalleerd worden.
+```bash
+pip3 install pandas
+```
+
+Vervolgens in de <code>TensorFlow/scripts/preprocessing</code> map:
+
+```bash
+# Training data aanmaken:
+python3 generate_tfrecord.py -x [PAD_NAAR_IMAGES_MAP]/train -l [PAD_NAAR_ANNOTATIONS_MAP]/label_map.pbtxt -o [PAD_NAAR_ANNOTATIONS_MAP]/train.record
+
+# Test data aanmaken:
+python3 generate_tfrecord.py -x [PAD_NAAR_IMAGES_MAP]/test -l [PAD_NAAR_ANNOTATIONS_MAP]/label_map.pbtxt -o [PAD_NAAR_ANNOTATIONS_MAP]/test.record
+```
+
+Het uitvoeren van dit zou moeten resulteren in 2 new bestanden onder de <code>training_demo/annotations</code> map, genaamd <code>test.record</code> en <code>training.record</code>.
+
+
+#### Training taak aanmaken
+
+Wij zullen geen taining taak aanmaken vanaf nul maar opteren eerder om een bestaand model te gebruiken. Moest u dit toch willen doen kunt u [de documentatie van Tensorflow lezen.](https://github.com/tensorflow/models/blob/master/research/object_detection/g3doc/configuring_jobs.md)
+
+Het model dat we in onze voorbeelden zullen gebruiken is het [SSD ResNet50 V1 FPN 640x640](http://download.tensorflow.org/models/object_detection/tf2/20200711/ssd_resnet50_v1_fpn_640x640_coco17_tpu-8.tar.gz) model, omdat het een relatief goede afweging biedt tussen prestaties en snelheid. Er bestaan echter een aantal andere modellen die je kunt gebruiken, die allemaal opgesomd staan in [TensorFlow 2 Detection Model Zoo](https://github.com/tensorflow/models/blob/master/research/object_detection/g3doc/tf2_detection_zoo.md).
+
+##### Download Pre-Trained Model
+
+Om te beginnen download een model uit de lijst vermeld hierboven.
+
+Eenmaal het <code>*.tar.gz</code> bestand is gedownload pak je de ze uit in de <code>training_demo/pre-trained-models</code> map.
+Dit zou moeten resulteren in een gelijkaardige structuur als het volgende:
+
+```
+training_demo/
+├─ ...
+├─ pre-trained-models/
+│  └─ ssd_resnet50_v1_fpn_640x640_coco17_tpu-8/
+│     ├─ checkpoint/
+│     ├─ saved_model/
+│     └─ pipeline.config
+└─ ...
+```
+
+#### De Training Pipeline configureren
+
+Nu het model dat gebruikt zal worden is gedownload maken we in de een nieuwe <code>my_ssd_resnet50_v1_fpn</code> map aan voor ons eigen getrained model. Dit doen we in de <code>training_demo/models</code> map. Hiernaar Kopiëren we de <code>pipeline.config</code> dat we terugvinden in ons gedownload model.
+
+```
+training_demo/
+├─ ...
+├─ models/
+│  └─ my_ssd_resnet50_v1_fpn/
+│     └─ pipeline.config
+└─ ...
+```
+
+In deze <code>pipeline.config</code> zijn een aantal aanpassingen nodig. (Deze aanpassingen zijn analoog voor andere modellen).
+
+
+<details>
+  <summary>Uitvouwen</summary>
+
+
+```
+model {
+  ssd {
+    num_classes: 2 # Pas dit aan naargelang het aantal klassen dat nodig zijn (label_map.pbtxt)
+    image_resizer {
+      fixed_shape_resizer {
+        height: 640
+        width: 640
+      }
+    }
+    feature_extractor {
+      type: "ssd_resnet50_v1_fpn_keras"
+      depth_multiplier: 1.0
+      min_depth: 16
+      conv_hyperparams {
+        regularizer {
+          l2_regularizer {
+            weight: 0.00039999998989515007
+          }
+        }
+        initializer {
+          truncated_normal_initializer {
+            mean: 0.0
+            stddev: 0.029999999329447746
+          }
+        }
+        activation: RELU_6
+        batch_norm {
+          decay: 0.996999979019165
+          scale: true
+          epsilon: 0.0010000000474974513
+        }
+      }
+      override_base_feature_extractor_hyperparams: true
+      fpn {
+        min_level: 3
+        max_level: 7
+      }
+    }
+    box_coder {
+      faster_rcnn_box_coder {
+        y_scale: 10.0
+        x_scale: 10.0
+        height_scale: 5.0
+        width_scale: 5.0
+      }
+    }
+    matcher {
+      argmax_matcher {
+        matched_threshold: 0.5
+        unmatched_threshold: 0.5
+        ignore_thresholds: false
+        negatives_lower_than_unmatched: true
+        force_match_for_each_row: true
+        use_matmul_gather: true
+      }
+    }
+    similarity_calculator {
+      iou_similarity {
+      }
+    }
+    box_predictor {
+      weight_shared_convolutional_box_predictor {
+        conv_hyperparams {
+          regularizer {
+            l2_regularizer {
+              weight: 0.00039999998989515007
+            }
+          }
+          initializer {
+            random_normal_initializer {
+              mean: 0.0
+              stddev: 0.009999999776482582
+            }
+          }
+          activation: RELU_6
+          batch_norm {
+            decay: 0.996999979019165
+            scale: true
+            epsilon: 0.0010000000474974513
+          }
+        }
+        depth: 256
+        num_layers_before_predictor: 4
+        kernel_size: 3
+        class_prediction_bias_init: -4.599999904632568
+      }
+    }
+    anchor_generator {
+      multiscale_anchor_generator {
+        min_level: 3
+        max_level: 7
+        anchor_scale: 4.0
+        aspect_ratios: 1.0
+        aspect_ratios: 2.0
+        aspect_ratios: 0.5
+        scales_per_octave: 2
+      }
+    }
+    post_processing {
+      batch_non_max_suppression {
+        score_threshold: 9.99999993922529e-09
+        iou_threshold: 0.6000000238418579
+        max_detections_per_class: 100
+        max_total_detections: 100
+        use_static_shapes: false
+      }
+      score_converter: SIGMOID
+    }
+    normalize_loss_by_num_matches: true
+    loss {
+      localization_loss {
+        weighted_smooth_l1 {
+        }
+      }
+      classification_loss {
+        weighted_sigmoid_focal {
+          gamma: 2.0
+          alpha: 0.25
+        }
+      }
+      classification_weight: 1.0
+      localization_weight: 1.0
+    }
+    encode_background_as_zeros: true
+    normalize_loc_loss_by_codesize: true
+    inplace_batchnorm_update: true
+    freeze_batchnorm: false
+  }
+}
+train_config {
+  batch_size: 4 # Verhoog / Verlaag deze waarde afhankelijk van het beschikbare geheugen (Hogere waarden vereisen meer geheugen en vice-versa). Hiermee kan wat gespeeld worden, 4 was comfortabel voor een GTX 1080
+  data_augmentation_options {
+    random_horizontal_flip {
+    }
+  }
+  data_augmentation_options {
+    random_crop_image {
+      min_object_covered: 0.0
+      min_aspect_ratio: 0.75
+      max_aspect_ratio: 3.0
+      min_area: 0.75
+      max_area: 1.0
+      overlap_thresh: 0.0
+    }
+  }
+  sync_replicas: true
+  optimizer {
+    momentum_optimizer {
+      learning_rate {
+        cosine_decay_learning_rate {
+          learning_rate_base: 0.03999999910593033
+          total_steps: 25000
+          warmup_learning_rate: 0.013333000242710114
+          warmup_steps: 2000
+        }
+      }
+      momentum_optimizer_value: 0.8999999761581421
+    }
+    use_moving_average: false
+  }
+  fine_tune_checkpoint: "pre-trained-models/ssd_resnet50_v1_fpn_640x640_coco17_tpu-8/checkpoint/ckpt-0" # Pad naar de checkpoint van het pre-trained model
+  num_steps: 25000
+  startup_delay_steps: 0.0
+  replicas_to_aggregate: 8
+  max_number_of_boxes: 100
+  unpad_groundtruth_tensors: false
+  fine_tune_checkpoint_type: "detection" # Zet dit naar "detection" omdat we het volledig detectie model willen trainen
+  use_bfloat16: false # Set dit naar false als je niet traint op een TPU
+  fine_tune_checkpoint_version: V2
+}
+train_input_reader {
+  label_map_path: "annotations/label_map.pbtxt" # Pad naar label map bestand
+  tf_record_input_reader {
+    input_path: "annotations/train.record" # Pad naar training TFRecord bestand
+  }
+}
+eval_config {
+  metrics_set: "coco_detection_metrics"
+  use_moving_averages: false
+}
+eval_input_reader {
+  label_map_path: "annotations/label_map.pbtxt" # Pad naar label map bestand
+  shuffle: false
+  num_epochs: 1
+  tf_record_input_reader {
+    input_path: "annotations/test.record" # Pad naar testing TFRecord
+  }
+}
+```
+
+</details>
+
+<sub>Controleer zeker al paden dat meegegeven moeten worden, soms is een absoluut pad veiliger en vermijdt dit fouten.</sub>
 
