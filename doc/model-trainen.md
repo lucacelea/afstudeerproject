@@ -669,7 +669,7 @@ Met dit model kunt u nu inferentie doen.
 
 ___
 
-#Bronnen
+# Bronnen
 * [Nvidia cuDNN Documentation](https://docs.nvidia.com/deeplearning/cudnn/install-guide/index.html "Nvidia cuDNN Documentation")
 * [Cuda Toolkit Documentation](https://docs.nvidia.com/cuda/cuda-installation-guide-linux/index.html "Cuda Toolkit Documentation")
 * [TensorFlow 2 Object Detection API tutorial Installation](https://tensorflow-object-detection-api-tutorial.readthedocs.io/en/latest/install.html "TensorFlow 2 Object Detection API tutorial Installation")
