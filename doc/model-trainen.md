@@ -345,7 +345,7 @@ Label map bestanden hebben gewoonlijk de extensie <code>.pbtxt</code> en horen i
 
 Nu onze annotaties zijn gegenereerd en onze dataset zijn opgesplitst in de gewenste training en testing subsets, is het tijd om onze annotaties om te zetten in het zogenaamde <code>TFRecord</code> formaat.
 
-#### <code>*.xml</code> omzetten naar <code>*.record</code>
+#### <code>\*.xml</code> omzetten naar <code>\*.record</code>
 
 Om dit te doen kan een scriptje gebruikt wordt dat itereert over alle <code>*.xml</code> bestanden in de <code>training_demo/images/train</code> en <code>training_demo/images/test</code> mappen en bijhorende <code>*.record</code> bestanden aanmaakt. Gelukkig heeft iemand dit al voor ons gedaan. [Dit scriptje is hier te downloaden.](https://tensorflow-object-detection-api-tutorial.readthedocs.io/en/latest/_downloads/da4babe668a8afb093cc7776d7e630f3/generate_tfrecord.py "Scriptje om *.xml om te zetten naar de *.record bestanden")
 Plaats dit scriptje in de <code>Tensorflow/scripts/preprocessing</code> map.
