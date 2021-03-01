@@ -16,7 +16,7 @@ OPENBLAS_CORETYPE=ARMV8 python3 launch.py
 
 Eerste scherm na runnen van bovenstaande commando
 
-![](C:\Users\jefqu\Desktop\scherm 1.JPG)
+![](docs_images\gebruikershandleiding\scherm 1.JPG)
 
 ### Legende:
 
