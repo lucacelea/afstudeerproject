@@ -182,7 +182,7 @@ def reset():
     file_entry.delete(0,'end')
     model_checkbox.deselect()
     skipped_frames_entry.delete(0,'end')
-    skipped_frames_entry.insert(0,1)
+    skipped_frames_entry.insert(0,2)
     seperate_session_logging_files_checkbox.select()
     detection_confidence_entry.delete(0,'end')
     detection_confidence_entry.insert(0,0.4)
