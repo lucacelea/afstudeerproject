@@ -36,8 +36,11 @@ ap.add_argument("-c", "--confidence", type=float, default=0.4,
 	help="minimum probability to filter weak detections")
 ap.add_argument("-s", "--skip-frames", type=int, default=30,
 	help="# of skip frames between detections")
+ap.add_argument("-t", "--time", type=float, default=2.5,
+	help="# time of detections when someone is in detection zone")
 args = vars(ap.parse_args())
 
+detection_time = args.get('time')
 #create session id in epoch time
 
 session_id = int(time.time())
@@ -290,7 +293,7 @@ while True:
 					list_time[objectID] = [t]
 				print("!!!!!!!!detection!!!!!!!! ", t)
 				times = list_time[objectID]
-				if times[len(times) - 1] - times[0] >= 2.5:
+				if times[len(times) - 1] - times[0] >= detection_time:
 					print("Disinfection counted")
 					list_ontsmet.append(objectID)
 					totalDetection = totalDetection + 1
