@@ -27,7 +27,7 @@ else:
     webcam = tk.BooleanVar()
     webcam.set(True)
     video_input_file = ""
-    skipped_frames = 1
+    skipped_frames = 2
     seperate_session_logging_files = tk.BooleanVar()
     seperate_session_logging_files.set(True)
     model = tk.BooleanVar()
@@ -140,7 +140,7 @@ zone_detection_time_entry.grid(row=11,column=1)
 
 
 def save():
-    global webcam, file_entry, video_input_file,seperate_session_logging_files
+    global webcam, file_entry, video_input_file,seperate_session_logging_files,skipped_frames,detection_confidence,zone_detection_time
     video_input_file = file_entry.get()
     skipped_frames = skipped_frames_entry.get()
     detection_confidence = detection_confidence_entry.get()
@@ -197,7 +197,6 @@ def run():
     skip_frames = ["-s",skipped_frames]
     det_conf = ["-c",detection_confidence]
     zone_det = ["-t",zone_detection_time]
-
     call = ['python', 'people_counter.py'] + det_conf + skip_frames + zone_det
     
     if not webcam.get():
@@ -205,7 +204,7 @@ def run():
     if model.get():
         call = call + ["-m"]
         
-    
+    print(call)
     subprocess.call(call)
 
 

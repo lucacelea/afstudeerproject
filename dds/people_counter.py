@@ -34,7 +34,7 @@ ap.add_argument("-o", "--output", type=str,
 	help="path to optional output video file")
 ap.add_argument("-c", "--confidence", type=float, default=0.4,
 	help="minimum probability to filter weak detections")
-ap.add_argument("-s", "--skip-frames", type=int, default=30,
+ap.add_argument("-s", "--skip-frames", type=int, default=2,
 	help="# of skip frames between detections")
 ap.add_argument("-t", "--time", type=float, default=2.5,
 	help="# time of detections when someone is in detection zone")
@@ -121,17 +121,19 @@ cv2.imwrite("room_photo.jpg", frame1)
 middelpunt, radius = dispenser.dispenser("room_photo.jpg")
 
 # loop over frames from the video stream
+
+input = args.get('input',False)
 while True:
 	inside = False
 	# grab the next frame and handle if we are reading from either
 	# VideoCapture or VideoStream
 
-	if not args.get("input", False):
+	if not input:
 		_, frame = vs.read()
 	else:
 		frame = vs.read()
 		
-	frame = frame[1] if args.get("input", False) else frame
+	frame = frame[1] if input else frame
 
 	# if we are viewing a video and we did not grab a frame then we
 	# have reached the end of the video
@@ -163,7 +165,7 @@ while True:
 
 	# check to see if we should run a more computationally expensive
 	# object detection method to aid our tracker
-	if totalFrames % args["skip_frames"] == 0:
+	if totalFrames % args["skip_frames"] == 0 :
 		# set the status and initialize our new set of object trackers
 		status = "Detecting"
 		trackers = []
@@ -214,7 +216,7 @@ while True:
 
 	# otherwise, we should utilize our object *trackers* rather than
 	# object *detectors* to obtain a higher frame processing throughput
-	else:
+	if args["skip_frames"] == 1 or totalFrames % args["skip_frames"] != 0:
 		# loop over the trackers
 		for tracker in trackers:
 			# set the status of our system to be 'tracking' rather
