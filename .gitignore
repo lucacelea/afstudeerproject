@@ -4,3 +4,6 @@
 *.jpg
 *.webm
 *.csv
+dds/config.ini
+dds/__pycache__
+dds/pyimagesearch/__pycache__
