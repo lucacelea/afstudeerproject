@@ -301,7 +301,7 @@ while True:
 					totalDetection = totalDetection + 1
 					print("reset")
 					list_time = []
-					data.log_detection({'SESSION_ID': session_id,'EPOCH_TIME': time.time(), 'EVENT' : 'DISENFECTED'}) 
+					data.log_detection({'SESSION_ID': session_id,'EPOCH_TIME': time.time(), 'EVENT' : 'DISINFECTED'}) 
 
 
 
