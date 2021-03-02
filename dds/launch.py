@@ -197,7 +197,7 @@ def run():
     skip_frames = ["-s",skipped_frames]
     det_conf = ["-c",detection_confidence]
     zone_det = ["-t",zone_detection_time]
-    call = ['python3', 'people_counter.py'] + det_conf + skip_frames + zone_det
+    call = ['python', 'people_counter.py'] + det_conf + skip_frames + zone_det
     
     if not webcam.get():
         call = call + input
