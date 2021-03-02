@@ -30,6 +30,7 @@ Om ons eigen model te trainen zullen we gebruik maken van Tensorflow 2 en hun bi
       - [De Training Pipeline configureren](#de-training-pipeline-configureren)
     - [Het model trainen](#het-model-trainen)
     - [Getrained model extraheren](#getrained-model-extraheren)
+  - [Performantie](#performantie)
 - [Bronnen](#bronnen)
 
 ## Cuda & cuDNN 
@@ -699,6 +700,8 @@ Standaard model      |  Zelf getrained
 ![Model A](https://github.com/lucacelea/afstudeerproject/blob/main/doc/docs_images/model%20trainen/output-without-self-trained.gif)  |  ![Model B](https://github.com/lucacelea/afstudeerproject/blob/main/doc/docs_images/model%20trainen/output-with-self-trained.gif)
 
 Het is hier duidelijk dat het zelf getrainde model beter is wanneer we het toepassen op een van de video's waarop het getest is. Dit toont on nu niet super veel want het is belangrijker dat het ook werkt op andere niet getrainde video's maar het toont ons wel dat het trainingsprocess allesinds gelukt is.
+
+Wat we hier ook wel meteen zien is dat het trainen van de dispenser duidelijk niet geslaagd is. Deze wordt maar enkele keren gededecteerd, om dit te doen werken zullen we dus een andere aanpak moeten nemen.
 ___
 
 # Bronnen
