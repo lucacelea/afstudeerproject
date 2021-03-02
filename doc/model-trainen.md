@@ -692,7 +692,13 @@ training_demo/
 
 Met dit model kunt u nu inferentie doen.
 
+## Performantie
 
+Standaard model      |  Zelf getrained
+:-------------------------:|:-------------------------:
+![Model A](https://github.com/lucacelea/afstudeerproject/blob/main/doc/docs_images/model%20trainen/output-without-self-trained.gif)  |  ![Model B](https://github.com/lucacelea/afstudeerproject/blob/main/doc/docs_images/model%20trainen/output-with-self-trained.gif)
+
+Het is hier duidelijk dat het zelf getrainde model beter is wanneer we het toepassen op een van de video's waarop het getest is. Dit toont on nu niet super veel want het is belangrijker dat het ook werkt op andere niet getrainde video's maar het toont ons wel dat het trainingsprocess allesinds gelukt is.
 ___
 
 # Bronnen
