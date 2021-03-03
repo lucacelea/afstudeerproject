@@ -696,7 +696,7 @@ Met dit model kunt u nu inferentie doen.
 
 ## Performantie
 
-Zelf hebben wij een model getrainde aan de hand van een 4 tal video waarvan we elke frame hebben geannoteerd. Dit zowel voor de dispenser als personen.
+Zelf hebben wij een model getrainde aan de hand van een 4 tal video waarvan we elke frame hebben geannoteerd. Dit zowel voor de dispenser (hier gesimuleerd door het rode info-bord) als personen.
 
 Standaard model      |  Zelf getrained
 :-------------------------:|:-------------------------:
