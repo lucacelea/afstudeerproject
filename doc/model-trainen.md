@@ -31,6 +31,7 @@ Om ons eigen model te trainen zullen we gebruik maken van Tensorflow 2 en hun bi
     - [Het model trainen](#het-model-trainen)
     - [Getrained model extraheren](#getrained-model-extraheren)
   - [Performantie](#performantie)
+       - [Conclusie](#conclusie)
 - [Bronnen](#bronnen)
 
 ## Cuda & cuDNN 
@@ -711,7 +712,7 @@ Standaard model      |  Zelf getrained
 
 Nu we het op een video runnen dat niet gebruikt is geweest om het model te trainen kunnen we zien dat het ook hier wel stukken beter detecteerd.
 
-#### Conclusie
+### Conclusie
 
  Jammergenoeg hebben we dit niet veel verder en uitbundig kunnen testen omdat er maar een zeer beperkte bezetting was op campus. Maar denondanks is het wel duidelijk dat een getrained model een stuk beter zal presteren, wat ook wel binnen onze verwachtingen zat.
 
