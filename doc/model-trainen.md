@@ -664,7 +664,7 @@ TensorBoard 2.2.2 at http://localhost:6006/ (Press CTRL+C to quit)
 
 Zodra dit is gebeurd, gaat u naar uw browser en typt u http://localhost:6006/ in de adresbalk, waarna u een dashboard te zien zou moeten krijgen dat lijkt op het hieronder getoonde (misschien minder bevolkt als uw model nog maar net met trainen is begonnen):
 
-![TensorBoard Dashboard](https://github.com/lucacelea/afstudeerproject/blob/main/doc/docs_images/model%20trainen/TensorBoard.JPG)
+[TensorBoard Dashboard](afstudeerproject/doc/docs_images/model trainen/TensorBoard.JPG)
 
 
 ### Getrained model extraheren
