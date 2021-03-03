@@ -714,7 +714,7 @@ Nu we het op een video runnen dat niet gebruikt is geweest om het model te train
 
 ### Conclusie
 
- Jammergenoeg hebben we dit niet veel verder en uitbundig kunnen testen omdat er maar een zeer beperkte bezetting was op campus. Maar denondanks is het wel duidelijk dat een getrained model een stuk beter zal presteren, wat ook wel binnen onze verwachtingen zat.
+ Jammergenoeg hebben we dit niet veel verder en uitbundig kunnen testen omdat er maar een zeer beperkte bezetting was op campus. Denondanks is het wel duidelijk dat een getrained model een stuk beter zal presteren, wat ook wel binnen onze verwachtingen zat.
 
  Het detecteren van de dispenser was niet het hoofddoel maar desondanks wordt deze af en toe gededecteerd. Het lijkt ons dus ook wel dat dit zeker een pad kan zijn dat verder onderzocht kan worden. Wij hebben voor dispenser ook maar een enkele positie geannoteerd, dus mogelijks geeft dit ook een goed resultaat als er genoeg variatie in de afbeelding zit waarmee je wilt trainen.
 
