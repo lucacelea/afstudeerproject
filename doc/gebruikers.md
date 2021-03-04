@@ -29,7 +29,7 @@ Eerste scherm na runnen van bovenstaande commando
 
   * Skipped frames: hoe lager je dit getal zet, hoe meer frames het systeem gaat analyseren. Het systeem zal wel nauwkeuriger zijn, maar zal in ruil trager werken
 
-    (Men kan het getal beter niet kleiner zetten dan 1)
+    (Dit getal moet >= 1 zijn)
 
 * Logging:
   (een session is het starten van het systeem)
