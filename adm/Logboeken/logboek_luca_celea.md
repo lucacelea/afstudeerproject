@@ -13,7 +13,7 @@
 |  22/2 	|   8u	|  Heel de groep 	| Ontwikkelen van detectie programma + meeting met projectcoach + meeting met de klant  	|
 |  23/2 	|   8u	| Heel de groep  	| Documentatie en administratie + meeting projectcoach  	|
 |  24/2 	|   8u	| Heel de groep  	| Meeting klant + afwerking project + documentatie 	|
-|  25/2 	|   8u	| Heel de groep  	| DDS afgewerkt + scope en vision afgemaakt  	|
+|  25/2 	|   8u	| Heel de groep  	| DDS afgewerkt + scope en vision afgemaakt + hoe moet men een model bijtrainen 	|
 |  26/2 	|   8u	| Heel de groep  	| Meeting taalcoach + documentatie afwerken  	|
 |  27/2 	|   5u	| Ik  	| Documentatie afwerken 	|
 |  28/2 	|   5u	| Ik  	| Documentatie afwerken  	|
