@@ -692,6 +692,8 @@ training_demo/
 
 Met dit model kunt u nu inferentie doen.
 
+Belangrijk om te weten is dat dit model wel niet zomaar door OpenCV ingeladen worden omdat OpenCV momenteel alleen nog maar Frozen Graphs ondersteund om ingeladen te worden. Het is natuurlijk wel mogelijk om dit gewoon met TensorFlow te doen.
+
 ## Performantie
 
 Zelf hebben wij een model getrainde aan de hand van een 4 tal video waarvan we elke frame hebben geannoteerd. Dit zowel voor de dispenser (hier gesimuleerd door het rode info-bord) als personen.
