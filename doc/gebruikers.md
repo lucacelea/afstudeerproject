@@ -2,7 +2,7 @@
 
 ## Opstarten van het systeem
 
-Wanneer de dependencies geïnstalleerd zijn en de camera juist opgehangen is ([zie installatiehandleiding](https://github.com/lucacelea/afstudeerproject/blob/main/doc/installatie.md)), kan het project opgestart worden.
+Wanneer de dependencies geïnstalleerd zijn en de camera juist opgehangen is ([zie installatiehandleiding](installatie.md)), kan het project opgestart worden.
 
 Om het project op te starten moet volgende commando in de juiste directory gerunned worden.
 
@@ -16,7 +16,7 @@ OPENBLAS_CORETYPE=ARMV8 python3 launch.py
 
 Eerste scherm na runnen van bovenstaande commando
 
-![](https://github.com/lucacelea/afstudeerproject/blob/main/doc/docs_images/gebruikershandleiding/scherm%201.JPG)
+![](docs_images/gebruikershandleiding/scherm%201.JPG)
 
 ### Legende:
 
@@ -47,11 +47,11 @@ Eerste scherm na runnen van bovenstaande commando
 
 ## Setup scherm
 
-![](https://github.com/lucacelea/afstudeerproject/blob/main/doc/docs_images/gebruikershandleiding/scherm%202.JPG)
+![](docs_images/gebruikershandleiding/scherm%202.JPG)
 
 Het setup scherm dient om de disinfectie zone aan te duiden. Hier zullen we het rode bord als dispenser gebruiken. Het is de bedoeling dat je cirkel vlak voor de dispenser trekt, op de plaats waar iemand zou staan. Met de muis selecteer je het middelpunt van de cirkel en sleep je de muis om de grote van de cirkel  te kiezen. Vervolgens krijg je dan onderstaand beeld te zien. 
 
-![](https://github.com/lucacelea/afstudeerproject/blob/main/doc/docs_images/gebruikershandleiding/scherm%203.JPG)
+![](docs_images/gebruikershandleiding/scherm%203.JPG)
 
 De cirkel dient dus om de disinfectie zone aan te duiden. Als een gedetecteerd persoon in deze cirkel staat voor een voldoende aantal seconden, dan zal deze geteld worden als een persoon die zijn handen heeft ontsmet. Wanneer je de cirkel opnieuw wilt trekken, druk je op de r-toets. Als je tevreden bent met de cirkel en de cirkel wilt bevestigen dan druk je op de c-toets.
 
@@ -59,7 +59,7 @@ De cirkel dient dus om de disinfectie zone aan te duiden. Als een gedetecteerd p
 
 Vervolgens krijgen we het onderstaande scherm te zien.
 
-![](https://github.com/lucacelea/afstudeerproject/blob/main/doc/docs_images/gebruikershandleiding/scherm%204.JPG)
+![](docs_images/gebruikershandleiding/scherm%204.JPG)
 
 Dit is de live feed/video dat word afgespeeld. Zoals je ziet staat de door jouw geselecteerde cirkel op het scherm. Links zie je de telers. Disinfection is het aantal mensen dat hun handen hebben ontsmet tijdens de gestarte sessie. People zijn het totaal aantal mensen die gedetecteerd zijn tijdens de gestarte sessie. De gele lijn is de zone waarrond we de gedetecteerde mensen gaan tellen.
 Als we het systeem willen afsluiten, dan drukken we op de q-toets.
@@ -68,14 +68,14 @@ Als we het systeem willen afsluiten, dan drukken we op de q-toets.
 
 Eens het systeem is afgesloten, kan je de sd-kaart uit de hardware halen en in uw computer steken. Vervolgens vind je de data in dezelfde directory als de launch.py file. In deze directory zie je één of meerdere csv files staan. Kies de juiste en open deze in Excel. Mogelijks krijg je onderstaand scherm te zien.
 
-![](https://github.com/lucacelea/afstudeerproject/blob/main/doc/docs_images/gebruikershandleiding/scherm%205.JPG)
+![](docs_images/gebruikershandleiding/scherm%205.JPG)
 
 Om de data in een meer overzichtelijke manier te bekijken, klik je onder Gegevens op importeer gegevens uit tekstbestand/CSV-bestand. (Links vanboven, rode cirkel op de foto)
 
-![](https://github.com/lucacelea/afstudeerproject/blob/main/doc/docs_images/gebruikershandleiding/scherm%206.JPG.png)
+![](docs_images/gebruikershandleiding/scherm%206.JPG.png)
 
 Als je de csv file op deze manier inlaad, krijg je het volgend beeld te zien.
 
-![](https://github.com/lucacelea/afstudeerproject/blob/main/doc/docs_images/gebruikershandleiding/scherm%207.JPG.png)
+![](docs_images/gebruikershandleiding/scherm%207.JPG.png)
 
 De verkregen data bestaat uit drie kolommen. De eerste kolom is de SESSION_ID, dit is de afgeronde epoch time van de opstarting van het systeem. De tweede kolom zijn de epoch times wanneer er een event heeft plaatsgevonden. De laatste kolom is de event kolom, deze kolom kan twee waardes bevatten: Entered (wanneer er een persoon geteld word bij het binnenkomen) en Disinfected (wanneer een persoon geteld word bij het ontsmetten van zijn handen).

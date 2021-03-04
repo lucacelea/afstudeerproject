@@ -59,7 +59,7 @@ Volg deze install. Installeer alles buiten de optie om een nieuwe Nvidia driver 
 
 Voor de installatie van cuDNN [is er ook documentatie van Nvidia](https://docs.nvidia.com/deeplearning/cudnn/install-guide/index.html "Nvidia cuDNN install Documentatie]"). Download de [cuDNN Library](https://developer.nvidia.com/compute/machine-learning/cudnn/secure/8.0.5/11.0_20201106/cudnn-11.0-linux-x64-v8.0.5.39.tgz) uit de archive.
 
-![image-20210226130742952](https://github.com/lucacelea/afstudeerproject/blob/main/doc/docs_images/model%20trainen/image-20210226130742952.png)
+![image-20210226130742952](docs_images/model_trainen/image-20210226130742952.png)
 
 <sub>Let op de versie van cuDNN is belangrijk. De versie dat wij gebruiken is compatibel is met TensorFlow 2.4.0 en Cuda 11.0. (cuDNN 8.0.5)</sub>
 
@@ -310,7 +310,7 @@ In <code>labelImg</code> kan u nu deze folder openen en zou u rechtsonder alle f
 
 Nu kan er begonnen worden met annoteren. Probeer steeds zo dicht mogelijk rond het object te selecteren. Bij elke foto moet u deze opslaan als alles geannoteerd is dat u nodig hebt. Dit zal een bijhorende <code>*.xml</code> bestand aanmaken.
 
-![labelImg](https://github.com/lucacelea/afstudeerproject/blob/main/doc/docs_images/model%20trainen/labelImg.JPG)
+![labelImg](docs_images/model_trainen/labelImg.JPG)
 
 #### De Dataset partitioneren
 
@@ -665,7 +665,7 @@ TensorBoard 2.2.2 at http://localhost:6006/ (Press CTRL+C to quit)
 
 Zodra dit is gebeurd, gaat u naar uw browser en typt u http://localhost:6006/ in de adresbalk, waarna u een dashboard te zien zou moeten krijgen dat lijkt op het hieronder getoonde (misschien minder bevolkt als uw model nog maar net met trainen is begonnen):
 
-![TensorBoard Dashboard](https://github.com/lucacelea/afstudeerproject/blob/main/doc/docs_images/model%20trainen/TensorBoard.JPG)
+![TensorBoard Dashboard](docs_images/model_trainen/TensorBoard.JPG)
 
 
 ### Getrained model extraheren
@@ -700,7 +700,7 @@ Zelf hebben wij een model getrainde aan de hand van een 4 tal video waarvan we e
 
 Standaard model      |  Zelf getrained
 :-------------------------:|:-------------------------:
-![Standaard model](https://github.com/lucacelea/afstudeerproject/blob/main/doc/docs_images/model%20trainen/output-without-self-trained.gif)  |  ![Getrained model](https://github.com/lucacelea/afstudeerproject/blob/main/doc/docs_images/model%20trainen/output-with-self-trained.gif)
+![Standaard model](docs_images/model_trainen/output-without-self-trained.gif)  |  ![Getrained model](docs_images/model_trainen/output-with-self-trained.gif)
 
 Het is hier duidelijk dat het zelf getrainde model beter is wanneer we het toepassen op een video dat gebruikt is om het model te trainen. Dit toont ons nu niet super veel want het is belangrijker dat het ook werkt op andere niet getrainde video's maar het toont ons wel dat het trainingsprocess allesinds gelukt is.
 
@@ -708,7 +708,7 @@ Wat we hier onmiddelijk zien is dat het trainen van de dispenser duidelijk niet 
 
 Standaard model      |  Zelf getrained
 :-------------------------:|:-------------------------:
-![Standaard model](https://github.com/lucacelea/afstudeerproject/blob/main/doc/docs_images/model%20trainen/output-without-self-trained-diff.gif)  |  ![Getrained model](https://github.com/lucacelea/afstudeerproject/blob/main/doc/docs_images/model%20trainen/output-with-self-trained-diff-vi.gif)
+![Standaard model](docs_images/model_trainen/output-without-self-trained-diff.gif)  |  ![Getrained model](docs_images/model_trainen/output-with-self-trained-diff-vi.gif)
 
 Nu we het op een video runnen dat niet gebruikt is geweest om het model te trainen kunnen we zien dat het ook hier wel stukken beter detecteerd.
 
