@@ -4,7 +4,7 @@
 
 Voor de installatie van het project gaan we er van uit dat er toegang is tot:
 * een Nvidia Jetson Xavier NX Dev Kit.
-* een 1080p camera of beter die op _minstens_ 4 meter hoogte gemonteerd staat en dit onder een hoek van rond de 25 graden.
+* een 1080p camera of beter die op _minstens_ 4 meter hoogte gemonteerd staat en dit onder een hoek tussen 40 en 60 graden.
 
 ## Jetson opstarten
 

@@ -79,7 +79,8 @@ De kracht van Tensorflow ligt vooral in het abstraheren van de “technische” 
 
 Doordat Tensorflow ondersteund wordt door Google, verloopt de ontwikkeling van en rond de library zeer vlot. Zo is de ondersteuning en opzet van Tensorflow widespread ondersteund. 
 
-Bronnen:
+___
+# Bronnen:
 
 - https://www.tensorflow.org/
 - https://www.infoworld.com/article/3278008/what-is-tensorflow-the-machine-learning-library-explained.html
