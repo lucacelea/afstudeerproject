@@ -30,6 +30,8 @@ Om ons eigen model te trainen zullen we gebruik maken van Tensorflow 2 en hun bi
       - [De Training Pipeline configureren](#de-training-pipeline-configureren)
     - [Het model trainen](#het-model-trainen)
     - [Getrained model extraheren](#getrained-model-extraheren)
+  - [Performantie](#performantie)
+       - [Conclusie](#conclusie)
 - [Bronnen](#bronnen)
 
 ## Cuda & cuDNN 
@@ -692,6 +694,29 @@ training_demo/
 
 Met dit model kunt u nu inferentie doen.
 
+## Performantie
+
+Zelf hebben wij een model getrainde aan de hand van een 4 tal video waarvan we elke frame hebben geannoteerd. Dit zowel voor de dispenser (hier gesimuleerd door het rode info-bord) als personen.
+
+Standaard model      |  Zelf getrained
+:-------------------------:|:-------------------------:
+![Standaard model](https://github.com/lucacelea/afstudeerproject/blob/main/doc/docs_images/model%20trainen/output-without-self-trained.gif)  |  ![Getrained model](https://github.com/lucacelea/afstudeerproject/blob/main/doc/docs_images/model%20trainen/output-with-self-trained.gif)
+
+Het is hier duidelijk dat het zelf getrainde model beter is wanneer we het toepassen op een video dat gebruikt is om het model te trainen. Dit toont ons nu niet super veel want het is belangrijker dat het ook werkt op andere niet getrainde video's maar het toont ons wel dat het trainingsprocess allesinds gelukt is.
+
+Wat we hier onmiddelijk zien is dat het trainen van de dispenser duidelijk niet geslaagd is. Deze wordt maar enkele keren gededecteerd, om dit te doen werken zullen we dus een andere aanpak moeten nemen.
+
+Standaard model      |  Zelf getrained
+:-------------------------:|:-------------------------:
+![Standaard model](https://github.com/lucacelea/afstudeerproject/blob/main/doc/docs_images/model%20trainen/output-without-self-trained-diff.gif)  |  ![Getrained model](https://github.com/lucacelea/afstudeerproject/blob/main/doc/docs_images/model%20trainen/output-with-self-trained-diff-vi.gif)
+
+Nu we het op een video runnen dat niet gebruikt is geweest om het model te trainen kunnen we zien dat het ook hier wel stukken beter detecteerd.
+
+### Conclusie
+
+ Jammergenoeg hebben we dit niet veel verder en uitbundig kunnen testen omdat er maar een zeer beperkte bezetting was op campus. Denondanks is het wel duidelijk dat een getrained model een stuk beter zal presteren, wat ook wel binnen onze verwachtingen zat.
+
+ Het detecteren van de dispenser was niet het hoofddoel maar desondanks wordt deze af en toe gededecteerd. Het lijkt ons dus ook wel dat dit zeker een pad kan zijn dat verder onderzocht kan worden. Wij hebben voor dispenser ook maar een enkele positie geannoteerd, dus mogelijks geeft dit ook een goed resultaat als er genoeg variatie in de afbeelding zit waarmee je wilt trainen.
 
 ___
 
@@ -700,6 +725,5 @@ ___
 * [Cuda Toolkit Documentation](https://docs.nvidia.com/cuda/cuda-installation-guide-linux/index.html "Cuda Toolkit Documentation")
 * [TensorFlow 2 Object Detection API tutorial Installation](https://tensorflow-object-detection-api-tutorial.readthedocs.io/en/latest/install.html "TensorFlow 2 Object Detection API tutorial Installation")
 * [TensorFlow 2 Object Detection API tutorial Training Custom Object Detector](https://tensorflow-object-detection-api-tutorial.readthedocs.io/en/latest/training.html "TensorFlow 2 Object Detection API tutorial Training Custom Object Detector")
-
 
 

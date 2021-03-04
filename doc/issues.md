@@ -24,6 +24,17 @@ Het derde idee was om met een uniek logo te werken. Iets wat opvalt in het beeld
 Het vierde idee was om met behulp van tekstrecognition de dispenser te detecteren. Aangezien de vorige zo moeilijk verliepen en na een korte meeting met de klant hadden we toch besloten om met een statische detectie zone te werken. De bedoeling is dat bij de installatie de gebruiker één keer een cirkel trekt op het camerabeeld. Als een gedetecteerd persoon in deze cirkel staat voor een voldoende aantal tijd, dan zal deze geteld worden als iemand die zijn handen heeft ontsmet. Deze laatste aanpak werkt zeer goed op ons systeem en we hebben vandaaruit het systeem verder opgebouwd.
 
 ## Detecteren van mensen
+Voor de Jetson Xavier hebben we volgende projecten opgezet:
+
+- https://github.com/dusty-nv/jetson-inference -> Deze werkte. Niet accuraat of performant genoeg. Weinig uitbreidingsmogelijkheden.
+
+- https://github.com/pythonlessons/TensorFlow-2.x-YOLOv3 -> Deze hebben we eerst getest op een desktop. Performantie en nauwkeurigheid was veelbelovend. Toen we het eindelijk draaiende kregen op de Jetson bleek er te weinig geheugen om het out of the box te draaien. De modellen moesten omgezet worden naar TensorRT modellen waardoor er zeer veel nauwkeurigheid verloren ging en de performantie was ook niet naar behoren. (1-3 frames per seconde)
+
+ - https://github.com/ahmetozlu/tensorflow_object_counting_api -> Werkte niet op de Jetsons.
+
+Voor de rest nog veel projecten uitgeprobeerd maar de meesten zijn niet accuraat of performant genoeg of er zijn problemen met compatibiliteit.
+Dit waren allemaal projecten met TensorFlow. Aangezien deze niet werkten, zijn we in de richting van OpenCV beginnen zoeken.
+
 Na wat zoeken hebben we uiteindelijk [een opensource broncode](https://www.pyimagesearch.com/2018/08/13/opencv-people-counter/) gevonden voor het detecteren en tracken van mensen. Deze broncode gaf ons een goede start om er onze eigen versie van te maken, zo kon het al mensen detecteren, een id geven om te tracken doorheen de opeenvolgende frames en de gedetecteerde mensen tellen. In het begin telde deze code mensen die van boven naar onder en van onder naar boven wandelden in het beeld. Aangezien wij alleen de inkom moeten filmen hebben wij de code aangepast, zodat het alleen mensen die van onder naar boven wandelen telt. Ook hebben we een zone gemaakt waarin de gedetecteerde mensen worden geteld. Zo worden mensen die al geteld zijn geweest en van id zijn verandert niet opnieuw geteld, zolang ze uit deze zone staan.
 
 
