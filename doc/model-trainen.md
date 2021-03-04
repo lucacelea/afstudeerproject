@@ -1,4 +1,4 @@
-
+![TensorBoard](doc/docs_images/model_trainen/TensorBoard.jpg)
 
 # Model trainen
 
