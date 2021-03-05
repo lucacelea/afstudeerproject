@@ -40,7 +40,7 @@ Bij het installeren van Cuda is het zeer belangrijk om na te dat de versies van 
 
 Om Cuda werkende te krijgen, kan er gebruik gemaakt worden van verschillende guides. [Nvidia heeft documentatie voor de installatie van Cuda](https://docs.nvidia.com/cuda/cuda-installation-guide-linux/index.html "Nvidia Documentatie") die hierbij kan helpen. Volgende methode gaf voor ons project de meest succesvolle resultaten.
 
-Download de [Cuda Toolkit 11.0 Download](https://developer.nvidia.com/cuda-11.0-download-archive?target_os=Linux&amp;target_arch=x86_64&amp;target_distro=Ubuntu&amp;target_version=1804 "Cuda Toolkit 11.0") van de Nvidia website. Kies voor een geschikte architectuur.
+Download de [Cuda Toolkit 11.0 Download](https://developer.nvidia.com/cuda-11.0-download-archive?target_os=Linux&target_arch=x86_64&target_distro=Ubuntu&target_version=1804&target_type=runfilelocal "Cuda Toolkit 11.0") van de Nvidia website. Kies voor een geschikte architectuur.
 
     Voor ons project kozen we:  Linux > x86_64 < Ubuntu < 18.04 < runfile (local) 
 
