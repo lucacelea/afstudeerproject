@@ -832,7 +832,7 @@ training_demo/
 
 Met dit model kunt u nu inferentie doen.
 
-Belangrijk om te weten is dat dit model wel niet zomaar door OpenCV ingeladen kan worden omdat OpenCV momenteel alleen nog maar Frozen Graphs ondersteund (<code>cv2.dnn.readNetFromTensorflow('frozen_inference_graph.pb', 'graph.pbtxt')</code>) om ingeladen te worden. Het is natuurlijk wel mogelijk om dit gewoon met TensorFlow te doen.
+Belangrijk om te weten is dat dit model wel niet zomaar door OpenCV ingeladen kan worden omdat OpenCV momenteel alleen nog maar Frozen Graphs ondersteund (<code>cv2.dnn.readNetFromTensorflow('frozen_inference_graph.pb', 'graph.pbtxt')</code>) om ingeladen te worden. Het is natuurlijk wel mogelijk om dit gewoon met TensorFlow te doen. Zoals wij ook hieronder hebben gedaan. Het omzetten naar een Frozen Graph zou theoretisch gezien mogelijk moeten zijn maar in praktijk is dit niet goed gedocumenteerd en is er tegenstrijdige informatie te vinden hierover. Tijd hadden we jammer genoeg niet meer voor het model nog eens te trainen met Tensorflow 1.
 
 ## Performantie
 
