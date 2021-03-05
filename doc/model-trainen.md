@@ -221,7 +221,7 @@ Cuda en cuDNN zouden nu correct geinstalleerd moeten zijn.
 
 ### Installeren
 
-Voer het volgende command uit in een Terminal venster:
+Voer het volgende command uit in een Terminal venster (het kan zijn dat deze versie niet beschikbaar is via PIP3 zonder deze te upgraden):
 
 ```bash
 pip3 install --ignore-installed --upgrade tensorflow==2.4.0
