@@ -3,9 +3,6 @@
 Om ons eigen model te trainen zullen we gebruik maken van Tensorflow 2 en hun bijhorende TensorFlow 2 Object Detection API. Omdat trainen veel sneller gaat met het gebruik van een GPU zullen we voor ons project ook Nvidia Cuda gebruiken zodat TensorFlow ten volle gebruik kan maken van de beschikbare GPU. Wij hebben deze install gedaan op Ubuntu 18.04.
 
 # Inhoudstafel
-
-- [Model trainen](#model-trainen)
-- [Inhoudstafel](#inhoudstafel)
   - [Cuda & cuDNN](#cuda--cudnn)
     - [Nvidia Driver installeren](#nvidia-driver-installeren)
     - [Cuda installeren](#cuda-installeren)
