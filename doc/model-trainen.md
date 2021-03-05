@@ -23,7 +23,7 @@ Om ons eigen model te trainen zullen we gebruik maken van Tensorflow 2 en hun bi
       - [De Dataset partitioneren](#de-dataset-partitioneren)
     - [De Label Map aanmaken](#de-label-map-aanmaken)
     - [TensorFlow records aanmaken](#tensorflow-records-aanmaken)
-      -[*.xml omzetten naar *.record](#xml-omzetten-naar-record)
+      - [*.xml omzetten naar *.record](#xml-omzetten-naar-record)
     - [Training taak aanmaken](#training-taak-aanmaken)
       - [Download Pre-Trained Model](#download-pre-trained-model)
       - [De Training Pipeline configureren](#de-training-pipeline-configureren)
