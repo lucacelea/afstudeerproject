@@ -5,8 +5,12 @@ Om ons eigen model te trainen zullen we gebruik maken van Tensorflow 2 en hun bi
 # Inhoudstafel
 
 - [Model trainen](#model-trainen)
+- [Inhoudstafel](#inhoudstafel)
   - [Cuda & cuDNN](#cuda--cudnn)
+    - [Nvidia Driver installeren](#nvidia-driver-installeren)
     - [Cuda installeren](#cuda-installeren)
+      - [Post installatie stappen](#post-installatie-stappen)
+      - [Verifieer installatie](#verifieer-installatie)
     - [cuDNN installeren](#cudnn-installeren)
   - [TensorFlow](#tensorflow)
     - [Installeren](#installeren)
@@ -22,14 +26,14 @@ Om ons eigen model te trainen zullen we gebruik maken van Tensorflow 2 en hun bi
       - [De Dataset partitioneren](#de-dataset-partitioneren)
     - [De Label Map aanmaken](#de-label-map-aanmaken)
     - [TensorFlow records aanmaken](#tensorflow-records-aanmaken)
-      - [*.xml omzetten naar *.record](#xml-omzetten-naar-record)
+      -[*.xml omzetten naar *.record](#xml-omzetten-naar-record)
     - [Training taak aanmaken](#training-taak-aanmaken)
       - [Download Pre-Trained Model](#download-pre-trained-model)
       - [De Training Pipeline configureren](#de-training-pipeline-configureren)
     - [Het model trainen](#het-model-trainen)
     - [Getrained model extraheren](#getrained-model-extraheren)
   - [Performantie](#performantie)
-       - [Conclusie](#conclusie)
+    - [Conclusie](#conclusie)
 - [Bronnen](#bronnen)
 
 ## Cuda & cuDNN 
@@ -327,7 +331,7 @@ make
 cp -r pycocotools <PATH_TO_TF>/TensorFlow/models/research/
 ```
 
-## Installeer de Object Detection API
+### Installeer de Object Detection API
 
 De installatie van de Object Detection API wordt behaald door het installeren van de <code>object_detection</code> package. Dit wordt gedaan door volgende commando's uit te voeren vanuit de <code>Tensorflow/models/research</code> folder:
 
