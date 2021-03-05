@@ -36,6 +36,19 @@ Om ons eigen model te trainen zullen we gebruik maken van Tensorflow 2 en hun bi
 
 Bij het installeren van Cuda is het zeer belangrijk om na te dat de versies van TensorFlow, Cuda en CUDnn compatibel zijn. Moest u zelf een andere versie willen installeren controleer dan zeker [*de lijst van TensorFlow zelf.*](https://www.tensorflow.org/install/source#gpu "Tensorflow Compatibility List")
 
+
+### Nvidia Driver installeren
+
+Controleer aan de hand van het commando <code>nvidia-smi</code> welke Nvidia Driver versie u heeft. Voor deze installatie gebruiken wij 460. Na een nieuwe installatie staat er vaak nog een driver op en zult u dus een error krijgen. Een nieuwe driver installeert u best gewoon via de ubuntu <em>Software & Updates</em>. 
+
+![Software & Updates](docs_images/model_trainen/software_and_updates.png)
+
+Na deze te installeren is een reboot vereist.
+
+Na een reboot zou je het volgende commando moeten kunnen runnen dat bevestigd dat de installatie gelukt is.
+
+![Nvidia-smi](docs_images/model_trainen/nvidia_smi.png)
+
 ### Cuda installeren
 
 Om Cuda werkende te krijgen, kan er gebruik gemaakt worden van verschillende guides. [Nvidia heeft documentatie voor de installatie van Cuda](https://docs.nvidia.com/cuda/cuda-installation-guide-linux/index.html "Nvidia Documentatie") die hierbij kan helpen. Volgende methode gaf voor ons project de meest succesvolle resultaten.
@@ -51,7 +64,134 @@ sudo sh cuda_11.0.2_450.51.05_linux.run
 ```
 <sub>Het opstarten van deze runfile kan lang duren </sub>
 
-Volg deze install. Installeer alles buiten de optie om een nieuwe Nvidia driver te installeren. Deze optie kan voor problemen zorgen. Na de installatie is er een bevestiging dat alles vlot verlopen is.
+Volg deze install. Installeer alles buiten de optie om een nieuwe Nvidia driver te installeren.
+
+![Cuda installer](docs_images/model_trainen/cuda_install.png)
+
+ Na de installatie is er een bevestiging dat alles vlot verlopen is.
+
+```
+===========
+= Summary =
+===========
+
+Driver:   Not Selected
+Toolkit:  Installed in /usr/local/cuda-11.0/
+Samples:  Installed in /home/rafael/, but missing recommended libraries
+
+Please make sure that
+ -   PATH includes /usr/local/cuda-11.0/bin
+ -   LD_LIBRARY_PATH includes /usr/local/cuda-11.0/lib64, or, add /usr/local/cuda-11.0/lib64 to /etc/ld.so.conf and run ldconfig as root
+
+To uninstall the CUDA Toolkit, run cuda-uninstaller in /usr/local/cuda-11.0/bin
+
+Please see CUDA_Installation_Guide_Linux.pdf in /usr/local/cuda-11.0/doc/pdf for detailed information on setting up CUDA.
+***WARNING: Incomplete installation! This installation did not install the CUDA Driver. A driver of version at least .00 is required for CUDA 11.0 functionality to work.
+To install the driver using this installer, run the following command, replacing <CudaInstaller> with the name of this run file:
+    sudo <CudaInstaller>.run --silent --driver
+
+Logfile is /var/log/cuda-installer.log
+```
+
+
+#### Post installatie stappen
+
+Voeg volgende toe aan <code>~/.bashrc</code>.
+
+```bash
+sudo nano ~/.bashrc
+```
+Voeg toe:
+
+```
+export PATH=/usr/local/cuda/bin${PATH:+:${PATH}}
+export LD_LIBRARY_PATH=/usr/local/cuda/lib64\
+                         ${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
+```
+
+Je kan deze dan in effect laten nemen door simpelweg de terminal venster te herstarten of door het volgende commando uit te voeren:
+
+```bash
+source ~/.bashrc
+```
+
+#### Verifieer installatie
+
+Om de installatie te bevestigen kan je de Cuda Samples runnen
+
+```bash
+cd /usr/local/cuda/samples
+```
+
+```bash
+sudo make -k
+```
+Dit duurt even... (Terwijl je hier op wacht kan je al beginnen desnoods met de [cuDNN installatie](#cudnn-installeren)).
+
+```bash
+cd /usr/local/cuda/samples/bin/x86_64/linux/release
+```
+```bash
+./deviceQuery
+```
+
+Dit zou moeten resulteren in de volgende output als de installatie correct is verlopen.
+
+
+<details>
+  <summary>Uitvouwen</summary>
+
+
+```
+./deviceQuery Starting...
+
+ CUDA Device Query (Runtime API) version (CUDART static linking)
+
+Detected 1 CUDA Capable device(s)
+
+Device 0: "GeForce GTX 1080"
+  CUDA Driver Version / Runtime Version          11.2 / 11.0
+  CUDA Capability Major/Minor version number:    6.1
+  Total amount of global memory:                 8117 MBytes (8510832640 bytes)
+  (20) Multiprocessors, (128) CUDA Cores/MP:     2560 CUDA Cores
+  GPU Max Clock rate:                            1835 MHz (1.84 GHz)
+  Memory Clock rate:                             5505 Mhz
+  Memory Bus Width:                              256-bit
+  L2 Cache Size:                                 2097152 bytes
+  Maximum Texture Dimension Size (x,y,z)         1D=(131072), 2D=(131072, 65536), 3D=(16384, 16384, 16384)
+  Maximum Layered 1D Texture Size, (num) layers  1D=(32768), 2048 layers
+  Maximum Layered 2D Texture Size, (num) layers  2D=(32768, 32768), 2048 layers
+  Total amount of constant memory:               65536 bytes
+  Total amount of shared memory per block:       49152 bytes
+  Total number of registers available per block: 65536
+  Warp size:                                     32
+  Maximum number of threads per multiprocessor:  2048
+  Maximum number of threads per block:           1024
+  Max dimension size of a thread block (x,y,z): (1024, 1024, 64)
+  Max dimension size of a grid size    (x,y,z): (2147483647, 65535, 65535)
+  Maximum memory pitch:                          2147483647 bytes
+  Texture alignment:                             512 bytes
+  Concurrent copy and kernel execution:          Yes with 2 copy engine(s)
+  Run time limit on kernels:                     Yes
+  Integrated GPU sharing Host Memory:            No
+  Support host page-locked memory mapping:       Yes
+  Alignment requirement for Surfaces:            Yes
+  Device has ECC support:                        Disabled
+  Device supports Unified Addressing (UVA):      Yes
+  Device supports Managed Memory:                Yes
+  Device supports Compute Preemption:            Yes
+  Supports Cooperative Kernel Launch:            Yes
+  Supports MultiDevice Co-op Kernel Launch:      Yes
+  Device PCI Domain ID / Bus ID / location ID:   0 / 45 / 0
+  Compute Mode:
+     < Default (multiple host threads can use ::cudaSetDevice() with device simultaneously) >
+
+deviceQuery, CUDA Driver = CUDART, CUDA Driver Version = 11.2, CUDA Runtime Version = 11.0, NumDevs = 1
+Result = PASS
+```
+
+</details>
+
 
 ### cuDNN installeren
 
@@ -75,8 +215,7 @@ sudo cp -P cuda/lib64/libcudnn* /usr/local/cuda/lib64
 sudo chmod a+r /usr/local/cuda/include/cudnn*.h /usr/local/cuda/lib64/libcudnn*
 ```
 
-Cuda en cuDNN zouden nu correct geinstalleerd moeten zijn. Om de installatie te controleren kunnen de Cuda Toolkit samples gebruikt worden.
-
+Cuda en cuDNN zouden nu correct geinstalleerd moeten zijn.
 ## TensorFlow
 
 ### Installeren
@@ -723,6 +862,7 @@ ___
 # Bronnen
 * [Nvidia cuDNN Documentation](https://docs.nvidia.com/deeplearning/cudnn/install-guide/index.html "Nvidia cuDNN Documentation")
 * [Cuda Toolkit Documentation](https://docs.nvidia.com/cuda/cuda-installation-guide-linux/index.html "Cuda Toolkit Documentation")
+* [Nvidia Cuda Samples](https://forums.developer.nvidia.com/t/devicequery-error-on-ubuntu-16-04-cuda-8-installation-gtx-1060/51823 ("Nvidia Cuda Samples"))
 * [TensorFlow 2 Object Detection API tutorial Installation](https://tensorflow-object-detection-api-tutorial.readthedocs.io/en/latest/install.html "TensorFlow 2 Object Detection API tutorial Installation")
 * [TensorFlow 2 Object Detection API tutorial Training Custom Object Detector](https://tensorflow-object-detection-api-tutorial.readthedocs.io/en/latest/training.html "TensorFlow 2 Object Detection API tutorial Training Custom Object Detector")
 
