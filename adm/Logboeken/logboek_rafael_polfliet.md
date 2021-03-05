@@ -21,3 +21,4 @@
 | 2/3 | 10u | Heel de groep | Demo-filmpjes opgenomen, voorbereiding presentatie, meeting taalcoach. |
 | 3/3 | 8u | Heel de groep | Voorbereiding presentatie + presentatie voor de klant geven.|
 | 4/3 | 10u | Heel de groep | Voorbereiding presentatie + presentatie ucll geven.|
+| 5/3 | 5u | Heel de groep | Afwerken project|
